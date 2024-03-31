@@ -1,18 +1,35 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { loginSchema } from '../../../validation/Validation'
 import Input from '../../shared/Input'
 import style from '../login/Login.module.css'
-import { Link } from 'react-router-dom'
+import {  Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { UserContext } from '../context/User'
 
 export default function Login() {
+    const navigat=useNavigate();
+    const {setUserToken,setUserId}=useContext(UserContext);
     const initialValues=
     {
         email:'',
         password:'',
         // checkbox:'',
     }
-    const onSubmit=()=>{}
+    const onSubmit=async users=>{
+        const {data}=await axios.post("https://estatetest.onrender.com/api/auth/login",users);
+        console.log(data);
+        if(data.message=='success')
+        {   
+            localStorage.setItem("userToken",data.token);
+            setUserToken(data.token);
+            localStorage.setItem("userId",data.other._id);
+            setUserId(data.other._id);
+            toast.success("Login Success");
+            navigat('/');
+        }
+    }
 
     const formik=useFormik({
         initialValues,
@@ -25,7 +42,7 @@ export default function Login() {
         name:'email',
         title:'Email address',
         type:'email',
-        className:'form-control',
+        // className:'form-control',
         value:formik.values.email
     },
     {
@@ -33,7 +50,7 @@ export default function Login() {
         name:'password',
         title:'Password',
         type:'password',
-        className:'form-control',
+        // className:'form-control',
         value:formik.values.password
     },
     // {
@@ -61,8 +78,12 @@ export default function Login() {
         key={index}/>
         )
     })
+
+    
 return (
+    
     <div className='container'>
+        
         <div className="row">
             <div className="col-md-7">
                 <img src={"../../../../img/login.png"} alt='login' className={`${style.logimg}`}/>
@@ -86,6 +107,10 @@ return (
 
                 <div className={`${style.dontAcount}`}>
                     <p>Dont have an account ?<Link to={"/register"}> <span> Register here</span> </Link></p>
+                </div>
+
+                <div className={`${style.forgetPass}`}>
+                    <p>ForgetPassword ?<a href="https://estatetest.onrender.com/password/forgot-password"> <span> Click here</span> </a></p>
                 </div>
             </div>
         </div>

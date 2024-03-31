@@ -4,9 +4,9 @@
 
 .logimg
 {
-    width: 600px;
+    width: 700px;
     height: 900px;
-    border-right: 1px solid black;
+    border-right: none;
 }
 .logoLogin
 {
@@ -71,6 +71,22 @@ margin-bottom: 10px;
     margin-left: 50px;
 }
 .dontAcount span
+{
+    color: #2C73EB;
+    font-weight: 700;
+}
+
+.forgetPass p
+{
+    margin-top: 15px;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #696F79;
+    margin-left: 50px;
+}
+
+.forgetPass span
 {
     color: #2C73EB;
     font-weight: 700;

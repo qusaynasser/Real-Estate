@@ -2,7 +2,7 @@ import React from 'react'
 import style from '../navbar/Navbar.module.css'
 import styles from '../footer/Footer.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram, faLinkedin, faTwitter} from '@fortawesome/free-brands-svg-icons'
 export default function Footer() {
   return (
     <div className='container'>
@@ -22,6 +22,7 @@ export default function Footer() {
           <FontAwesomeIcon icon={faTwitter} className={`${styles.twitter}`}/>
           <FontAwesomeIcon icon={faInstagram} className={`${styles.insta}`}/>
           <FontAwesomeIcon icon={faLinkedin} className={`${styles.linked}`}/>
+          {/* <FontAwesomeIcon icon={faUsers} className={`${styles.linked}`}/> */}
           </div>
 
           <div className="All-rights mt-4">

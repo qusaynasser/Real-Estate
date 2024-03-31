@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import style from '../home/Home.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Estate from '../estate/Estate';
+
 export default function Home() {
     const [activeButton, setActiveButton] = useState("");
 
@@ -9,6 +11,7 @@ export default function Home() {
         setActiveButton(btn);
     }
     return (
+        <>
         <div className='container'>
             <div className={`${style.bacImg}`}>
                 <div className={`${style.p1}`}>
@@ -38,10 +41,10 @@ export default function Home() {
                     <div className="row">
                         <div className="col-md-4">
                             <div className={`${style.location}`}>
-                                <p>Location</p>
+                                <p>Location</p> 
 
-                                <select className="form-select" aria-label="Default select example">
-                                    <option selected>Select Your City</option>
+                                <select defaultValue={0} className="form-select" aria-label="Default select example">
+                                    <option value={0}>Select Your City</option>
                                     <option value={1}>One</option>
                                     <option value={2}>Two</option>
                                     <option value={3}>Three</option>
@@ -54,8 +57,8 @@ export default function Home() {
                             <div className={`${style.property}`}>
                                 <p>Property Type</p>
 
-                                <select className="form-select" aria-label="Default select example">
-                                    <option selected>Choose Property Type</option>
+                                <select defaultValue={0} className="form-select" aria-label="Default select example">
+                                    <option value={0}>Choose Property Type</option>
                                     <option value={1}>One</option>
                                     <option value={2}>Two</option>
                                 </select>
@@ -66,8 +69,8 @@ export default function Home() {
                             <div className={`${style.price}`}>
                                 <p>Price Range</p>
 
-                                <select className="form-select" aria-label="Default select example">
-                                    <option selected>Select Your City</option>
+                                <select defaultValue={0} className="form-select" aria-label="Default select example">
+                                    <option value={0}>Choose Price Range</option>
                                     <option value={1}>One</option>
                                     <option value={2}>Two</option>
                                     <option value={3}>Three</option>
@@ -83,6 +86,37 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+        
+            <div className={`mb-5 ${style.knownCity}`}>
+                <div className={`${style.parg}`}>
+                <p>We are available in many well-known City</p>
+                </div>
+                <div className="row">
+                <div className={`col-md-3 ${style.imgHome}`}>
+                    <img src='../../../../img/alquds.jpeg' className='img-fluid'/>
+                    <p>Jerusalem</p>
+                </div>
+
+                <div className={`col-md-3 ${style.imgHome}`}>
+                    <img src='../../../../img/gaza.jpeg' className='img-fluid'/>
+                    <p>Gaza</p>
+                </div>
+
+                <div className={`col-md-3 ${style.imgHome}`}>
+                    <img src='../../../../img/nablus.jpeg' className='img-fluid'/>
+                    <p>Nablus</p>
+                </div>
+
+                <div className={`col-md-3 ${style.imgHome}`}>
+                    <img src='../../../../img/haifa.jpeg' className='img-fluid w-100'/>
+                    <p>Haifa</p>
+                </div>
+                </div>
+            </div>
         </div>
+
+        <Estate/>
+        
+        </>
     )
 }

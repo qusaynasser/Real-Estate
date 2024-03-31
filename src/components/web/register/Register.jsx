@@ -3,18 +3,34 @@ import React from 'react'
 import { registerSchema } from '../../../validation/Validation'
 import Input from '../../shared/Input'
 import style from '../login/Login.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export default function Register() {
+    const navigat=useNavigate();
     const initialValues=
     {
-        firstName:'',
-        lastName:'',
+        name: '',
         email:'',
-        city:'',
+        phone:'',
         password:'',
     }
-    const onSubmit=()=>{}
+    const onSubmit=async users=>{
+        try{
+            const {data}=await axios.post("https://estatetest.onrender.com/api/auth/register",users);
+            console.log(data);
+            if(data.message=="success")
+            {
+                toast.success("Register successfully");
+                navigat("/login")
+            }
+            
+        }
+        catch(err){
+            console.log(err);
+        }
+    }   
 
     const formik=useFormik({
         initialValues,
@@ -23,21 +39,14 @@ export default function Register() {
     })
 
     const inputs=[
+    
     {
-      id:'firstName',
-      name:'firstName',
-      title:'First Name',
+      id:'name',
+      name:'name',
+      title:'UserName',
       className:'form-control',
       type:'text',
-      value:formik.values.firstName,
-    },
-    {
-      id:'lastName',
-      name:'lastName',
-      title:'Last Name',
-      className:'form-control',
-      type:'text',
-      value:formik.values.lastName,
+      value:formik.values.name,
     },
     {
     id:'email',
@@ -48,12 +57,12 @@ export default function Register() {
     value:formik.values.email
     },
     {
-      id:'city',
-      name:'city',
-      title:'City',
+      id:'phone',
+      name:'phone',
+      title:'Phone',
       className:'form-control',
       type:'text',
-      value:formik.values.city,
+      value:formik.values.phone,    
     },
     {
     id:'password',
