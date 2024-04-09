@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import style from '../home/Home.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import Estate from '../estate/Estate';
+import RecentEstate from '../estates/RecentEstate';
+import DisplayEstate from '../displayEstate/DisplayEstate';
+// import ContactUs from '../contact/ContactUs';
 
 export default function Home() {
     const [activeButton, setActiveButton] = useState("");
@@ -115,8 +117,11 @@ export default function Home() {
             </div>
         </div>
 
-        <Estate/>
+        <RecentEstate/>
         
+        <DisplayEstate/>.
+
+        {/* <ContactUs/> */}
         </>
     )
 }

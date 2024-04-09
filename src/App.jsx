@@ -8,7 +8,11 @@ import {UserContext} from './components/web/context/User';
 import AddState from './components/web/addState/AddState';
 import Profile from './components/web/profile/Profile';
 import UserInfo from './components/web/profile/UserInfo';
-import Estate from './components/web/estate/Estate';
+import RecentEstate from './components/web/estates/RecentEstate';
+import MyEstate from './components/web/profile/MyEstate';
+import Form from './components/web/addState/Form';
+import DetalisEstate from './components/web/displayEstate/DetalisEstate';
+import UpdateInfo from './components/web/profile/UpdateInfo';
 
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
@@ -48,15 +52,31 @@ export default function App() {
       },
       {
         path:"displayEstate",
-        element:<Estate/>
+        element:<RecentEstate/>
+      },
+      {
+        path:"ditalState/:EstateId",
+        element:<DetalisEstate/>
+      },
+      {
+        path:"myForm",
+        element:<Form/>
       },
       {
         path:"profile",
         element:<Profile/>,
         children:[
           {
-            path:"info",
+            index:true,
             element:<UserInfo/>
+          },
+          {
+            path:"myEstate",
+            element:<MyEstate/>
+          },
+          {
+            path:"updateInfo",
+            element:<UpdateInfo/>
           }
         ]
       }

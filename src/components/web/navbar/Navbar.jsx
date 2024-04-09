@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext} from 'react'
 import style from '../navbar/Navbar.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/User'
@@ -33,7 +33,7 @@ export default function Navbar() {
           <Link className={`${style.navLink}`} aria-current="page" to={"/"}>Home</Link>
         </li>
         <li className="nav-item">
-          <a className={`${style.navLink}`} href="/myform">Houses</a>
+          <a className={`${style.navLink}`} href="/myForm">Houses</a>
         </li>
         <li className="nav-item">
           <a className={`${style.navLink}`} href="#">Store</a>

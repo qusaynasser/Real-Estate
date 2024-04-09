@@ -50,9 +50,13 @@ export default function Profile() {
     <aside className={`${style.profile}`}>
       <div className={`${style.profileLinks}`}>
       <nav>
-        <Link to="info">Info</Link>
-        <Link to="" onClick={() => setShowModal(true)}>Delete Account</Link> {/* فتح Modal عند الضغط */}
-        <Link to="info">Contact</Link>
+        <Link to="">Info</Link>
+
+        <Link  onClick={() => setShowModal(true)}>Delete Account</Link> {/* فتح Modal عند الضغط */}
+
+        <Link to="myEstate">My Estate</Link>
+
+        <Link to="updateInfo">Update My Data</Link>
       </nav>
 
         <Modal show={showModal} onHide={handleClose}> {/* Modal لتأكيد الحذف */}

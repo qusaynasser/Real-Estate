@@ -2,12 +2,11 @@ import axios from 'axios'
 import React from 'react'
 import { useQuery } from 'react-query';
 import style from './Estate.module.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {faUser} from '@fortawesome/free-brands-svg-icons'
+
 export default function Estate() {
 
     const displayEstate = async () => {
-        const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?pageNumber=1");
+        const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=House&pageNumber=1 ");
         // console.log(data);
         return data;
     }
@@ -21,7 +20,7 @@ export default function Estate() {
         <div className={`container my-5 ${style.recnt}`}>
             <p>Recently Added</p>
             <div className="row">
-                {data.estates.map((state) =>
+                { data.estates1.map((state) =>
                     <div className={`col-md-6  ${style.item}`} key={state._id}>
                         <div className="img">
                             <img src={state.imageUrl}/>

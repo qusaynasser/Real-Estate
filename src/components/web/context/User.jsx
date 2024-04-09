@@ -9,13 +9,13 @@ export function UserContextProvider({children})
     let [userId,setUserId]=useState(null);
     let [loading,setLoading]=useState(true);
     
-    console.log(userId);
+    // console.log(userId);
 
     const getUserData=async ()=>{
         if(userToken)
         {    const {data}=await axios.get(`https://estatetest.onrender.com/api/users/${userId}`,
             {headers:{token:userToken}});
-            console.log(data);
+            // console.log(data);
             setUserData(data);
             setLoading(false);
         }

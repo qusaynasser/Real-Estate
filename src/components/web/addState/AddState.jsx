@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import style from '../addState/AddState.module.css'
 import { UserContext } from "../context/User";
+import RecentEstate from '../estates/RecentEstate';
+import { toast } from "react-toastify";
 
 const AddState = () => {
     let { userToken } = useContext(UserContext);
@@ -23,7 +25,8 @@ const AddState = () => {
         setUserId(localStorage.getItem("userId"));
     }
     },[])
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => 
+    {
         e.preventDefault();
         console.log("test");
         const formData = new FormData();
@@ -48,15 +51,22 @@ const AddState = () => {
             },
         };
         try {
-            const res = await axios.post(
+            const {data} = await axios.post(
                 "https://estatetest.onrender.com/api/estate/create",
                 formData,
                 config,
             );
-            console.log(res.data);
+            if(data.message=="success")
+            {
+                toast.success("Successfully addedestate");
+            }
+            // console.log(res.data);
+
         } catch (err) {
             console.log(err);
         }
+        const form=document.getElementById("myForm");
+        form.reset();
     };
     
     const showBathroomsBedrooms = ["House", "Apartment", "Chalet",""].includes(typeEstates);
@@ -68,16 +78,16 @@ const AddState = () => {
             <span>Ready to take the first step toward your dream property? Fill out the form below, and our real estate wizards will work their magic to find your perfect match. Don't wait; let's embark on this exciting journey together.</span>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="myForm">
                 <div className="row">
                 <div className="col-md-3">
                     <div className="location">
                     <label className={`mb-2 ${style.label}`}>Location State:</label>
-                    <select className="form-select w-75 border-4" value={address} onChange={(e) => setAddress(e.target.value)}>
+                    <select className="form-select w-75 border-4" required value={address} onChange={(e) => setAddress(e.target.value)}>
                         <option value="">Select Location</option>
-                        <option value="state1">State 1</option>
-                        <option value="state2">State 2</option>
-                        <option value="state3">State 3</option>
+                        <option value="Ramallah">Ramallah</option>
+                        <option value="Tulkarm">Tulkarm</option>
+                        <option value="Nablus">Nablus</option>
                     </select>
                     </div>
                 </div>
@@ -85,7 +95,7 @@ const AddState = () => {
                 <div className="col-md-3">
                     <div className="type">
                     <label className={`mb-2 ${style.label}`}>Type of State:</label>
-                    <select className="form-select w-75 border-4" value={typeEstates} onChange={(e) => setTypeEstates(e.target.value)}>
+                    <select className="form-select w-75 border-4" required value={typeEstates} onChange={(e) => setTypeEstates(e.target.value)}>
                         <option value="">Property Type</option>
                         <option value="House">House</option>
                         <option value="Apartment">Flat</option>
@@ -130,7 +140,7 @@ const AddState = () => {
                     <label className={`mb-2 ${style.label}`}>Price:</label>
                     <div className="input-group mb-3">
                     <span className="input-group-text">$</span>
-                    <input type="number" placeholder='Enter Price In Dollar' className="form-control border-4" value={price} onChange={(e) => setPrice(e.target.value)}/>
+                    <input type="number" required placeholder='Enter Price In Dollar' className="form-control border-4" value={price} onChange={(e) => setPrice(e.target.value)}/>
                     <span className="input-group-text">.00</span>
                     </div>
                     </div>
@@ -139,7 +149,7 @@ const AddState = () => {
                 <div className="col-md-3">
                     <div className="area">
                     <label className={`mb-2 ${style.label}`}>Area(m²):</label>
-                    <input type="number" placeholder='Area in m²' className="form-control border-4" value={area} onChange={(e) => setArea(e.target.value)}/>
+                    <input type="number" required placeholder='Area in m²' className="form-control border-4" value={area} onChange={(e) => setArea(e.target.value)}/>
                     </div>
                 </div>
 
@@ -151,6 +161,7 @@ const AddState = () => {
                         type="radio"
                         name="renterOrSeller"
                         value="Rent"
+                        required
                         className="form-check-input border-4 me-2"
                         checked={typeEstateSR === "Rent"}
                         onChange={(e) => setTypeEstateSR(e.target.value)}
@@ -161,6 +172,7 @@ const AddState = () => {
                         type="radio"
                         name="renterOrSeller"
                         value="Sale"
+                        required
                         className="form-check-input border-4 me-2"
                         checked={typeEstateSR === "Sale"}
                         onChange={(e) => setTypeEstateSR(e.target.value)}
@@ -172,6 +184,7 @@ const AddState = () => {
                 <div className="detalis mb-2">
                 <label className={`mb-2 ${style.label}`}>Details:</label>
                     <textarea
+                        required
                         className="form-control border-4 w-25"
                         placeholder='Detalis on state'
                         value={description}
@@ -184,6 +197,7 @@ const AddState = () => {
                     <input
                         type="file"
                         multiple
+                        required
                         className="form-control border-4 w-50"
                         onChange={(e) => setImages(e.target.files)}
                     />
@@ -194,6 +208,8 @@ const AddState = () => {
                 <button type="submit"  className={`${style.btn}`}>Submit</button>
                 
             </form>
+
+            <RecentEstate/>
         </div>
     );
 };

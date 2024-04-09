@@ -12,4 +12,10 @@ export const registerSchema=yup.object({
     password:yup.string().required("Password is required").min(8,"password must be at least 8 characters").max(13,"password must be max 13 characters"),
 });
 
+export const UpdateInfoSchema=yup.object({
+    name:yup.string(),
+    email:yup.string(),
+    phone:yup.string(),
+});
+
 
