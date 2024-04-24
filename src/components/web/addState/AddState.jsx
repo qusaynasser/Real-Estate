@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import style from '../addState/AddState.module.css'
 import { UserContext } from "../context/User";
-import RecentEstate from '../estates/RecentEstate';
 import { toast } from "react-toastify";
 
 const AddState = () => {
@@ -45,10 +44,11 @@ const AddState = () => {
         const data = JSON.stringify(Object.fromEntries(formData.entries()));
         console.log(data);
         const config = {
-            headers: {
+            headers: 
+            {
                 "Content-Type": "multipart/form-data",
                 token: userToken,
-            },
+            }
         };
         try {
             const {data} = await axios.post(
@@ -82,7 +82,7 @@ const AddState = () => {
                 <div className="row">
                 <div className="col-md-3">
                     <div className="location">
-                    <label className={`mb-2 ${style.label}`}>Location State:</label>
+                    <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Location State:</label>
                     <select className="form-select w-75 border-4" required value={address} onChange={(e) => setAddress(e.target.value)}>
                         <option value="">Select Location</option>
                         <option value="Ramallah">Ramallah</option>
@@ -94,7 +94,7 @@ const AddState = () => {
 
                 <div className="col-md-3">
                     <div className="type">
-                    <label className={`mb-2 ${style.label}`}>Type of State:</label>
+                    <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Type of State:</label>
                     <select className="form-select w-75 border-4" required value={typeEstates} onChange={(e) => setTypeEstates(e.target.value)}>
                         <option value="">Property Type</option>
                         <option value="House">House</option>
@@ -111,7 +111,7 @@ const AddState = () => {
                     <>
                     <div className="col-md-3">
                     <div className="Bathrooms">
-                    <label className={`mb-2 ${style.label}`}>No. of Bathrooms:</label>
+                    <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> No. of Bathrooms:</label>
                     <select className="form-select w-75 border-4" value={bathrooms} onChange={(e) => setBathrooms(e.target.value)}>
                         <option value="">Select no. of Bathrooms</option>
                         <option value="1">1</option>
@@ -123,7 +123,7 @@ const AddState = () => {
                 
                 <div className="col-md-3">
                     <div className="Bedrooms mb-3">
-                    <label className={`mb-2 ${style.label}`}>No. of Bedrooms:</label>
+                    <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> No. of Bedrooms:</label>
                     <select className="form-select w-75 border-4" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}>
                         <option value="">Select no. of Bedrooms</option>
                         <option value="1">1</option>
@@ -137,10 +137,10 @@ const AddState = () => {
                 {/* ,,,,,,,,,,,,,,,,,,, */}
                 <div className="col-md-3">
                     <div className="price ">
-                    <label className={`mb-2 ${style.label}`}>Price:</label>
+                    <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Price:</label>
                     <div className="input-group mb-3">
                     <span className="input-group-text">$</span>
-                    <input type="number" required placeholder='Enter Price In Dollar' className="form-control border-4" value={price} onChange={(e) => setPrice(e.target.value)}/>
+                    <input type="number" id="myForm" required placeholder='Enter Price In Dollar' className="form-control border-4" value={price} onChange={(e) => setPrice(e.target.value)}/>
                     <span className="input-group-text">.00</span>
                     </div>
                     </div>
@@ -148,14 +148,14 @@ const AddState = () => {
 
                 <div className="col-md-3">
                     <div className="area">
-                    <label className={`mb-2 ${style.label}`}>Area(m²):</label>
+                    <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Area(m²):</label>
                     <input type="number" required placeholder='Area in m²' className="form-control border-4" value={area} onChange={(e) => setArea(e.target.value)}/>
                     </div>
                 </div>
 
                 <div className="col-md-3">
                     <div className="renterORseller mt-4">
-                    <label className={`mb-2 me-2 ${style.label}`}>Renter or Seller:</label>
+                    <label className={`mb-2 me-2 ${style.label}`}><span className="text-danger">*</span> Renter or Seller:</label>
                     
                     <input
                         type="radio"
@@ -182,18 +182,19 @@ const AddState = () => {
                 </div>
 
                 <div className="detalis mb-2">
-                <label className={`mb-2 ${style.label}`}>Details:</label>
+                <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Details:</label>
                     <textarea
                         required
                         className="form-control border-4 w-25"
                         placeholder='Detalis on state'
                         value={description}
+                        id="myForm"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
                 
                 <div className="images mb-4">
-                <label className={`mb-2 ${style.label}`}>Images:</label>
+                <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Images:</label>
                     <input
                         type="file"
                         multiple
@@ -209,7 +210,6 @@ const AddState = () => {
                 
             </form>
 
-            <RecentEstate/>
         </div>
     );
 };

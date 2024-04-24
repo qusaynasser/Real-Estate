@@ -2,11 +2,12 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../context/User'
 import { useQuery } from 'react-query';
-import style from '../displayEstate/DisplayEst.module.css';
+import style from '../house/DispalyH.module.css';
+import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 export default function MyEstate() {
     let {userToken}=useContext(UserContext);
-    // let [loading,setLoading] = useState(true);
     const [userId, setUserId] = useState(() => {
         // Initialize userId from local storage or null if not present
         return localStorage.getItem('userId') || null;
@@ -23,20 +24,28 @@ export default function MyEstate() {
     const myEstate=async ()=>{
         try
         {   
-            const {data}=await axios.get(`https://estatetest.onrender.com/api/estate/owner/${userId}`,
-            {headers:{token:userToken}});
-            return data;
-            
-            }
+          const {data}=await axios.get(`https://estatetest.onrender.com/api/estate/owner/${userId}`,
+          {headers:{token:userToken}});
+          return data;
+        }
         
         catch(error)
         {
-            console.log(error);
+          console.log(error);
         }
     }
     const {data,isLoading}=useQuery("myEstate",myEstate);
     console.log(data);
 
+    const deletEstate = async (EstateId)=>{
+      const {data}=await axios.delete(`https://estatetest.onrender.com/api/estate/${EstateId}`,
+      {headers:{token:userToken}});
+      console.log(data);
+      if(data.message=="success")
+      {
+        swal("Deleted Success!", "You clicked the button!", "success");
+      }
+    }
     if(isLoading)
     {
         return <h1>Loading...</h1>
@@ -48,13 +57,18 @@ export default function MyEstate() {
       <div className="row">
         {data.estate.length? data.estate.map((estates)=>
           <div className="col-md-3" key={estates._id}>
-            <div className={`${style.card}`}>
+            <div className={`mt-3 ${style.card}`}>
+              <Link to={`/ditalState/${estates._id}`}>
               <img src={estates.imageUrl} alt='Estate'/>
+              </Link>
               <p className={`${style.price}`}>{estates.price} $</p>
               <p className={`${style.type}`}>{estates.typeEstates}</p>
               <p className={`${style.address}`}>{estates.address}</p>
               <p className={`${style.area}`}>{estates.area} m²</p>
+              <div className={`${style.btnDelete}`}>
               <p className={`${style.chose}`}>{estates.typeEstateSR}</p>
+              <button type="button" className="btn btn-danger" onClick={()=>deletEstate(estates._id)}>Delete</button>
+              </div>
             </div>
           </div>
         ):<h1>State null</h1>}

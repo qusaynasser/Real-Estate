@@ -2,28 +2,31 @@ import axios from 'axios'
 import React from 'react'
 import { useQuery } from 'react-query';
 import style from './Estate.module.css';
+import { Link } from 'react-router-dom';
 
-export default function Estate() {
+export default function Estate({rs,loadingR}) {
+    console.log(rs);
+    // const displayEstate = async () => {
+    //     const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?pageNumber=1 ");
+    //     // console.log(data);
+    //     return data;
+    // }
+    // const { data, isLoading } = useQuery("displayEstate", displayEstate);
+    // console.log(data);
 
-    const displayEstate = async () => {
-        const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=House&pageNumber=1 ");
-        // console.log(data);
-        return data;
-    }
-    const { data, isLoading } = useQuery("displayEstate", displayEstate);
-    console.log(data);
-
-    if (isLoading) {
+    if (loadingR) {
         return <h1>Loading...</h1>
     }
     return (
         <div className={`container my-5 ${style.recnt}`}>
             <p>Recently Added</p>
             <div className="row">
-                { data.estates1.map((state) =>
+                { rs.estates? rs.estates.map((state) =>
                     <div className={`col-md-6  ${style.item}`} key={state._id}>
                         <div className="img">
+                            <Link to={`/ditalState/${state._id}`}>
                             <img src={state.imageUrl}/>
+                            </Link>
                             <span className={`${style.addres}`}>{state.address}</span>
                             <span className={`${style.name}`}>{state.ownerId.name}</span>
                             <span className={`${style.phone}`}>{state.ownerId.phone}</span>
@@ -31,7 +34,7 @@ export default function Estate() {
                         </div>
                     </div>
 
-                )}
+                ):<h1>null</h1>}
             </div>
         </div>
     )

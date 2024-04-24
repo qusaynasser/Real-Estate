@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import style from '../home/Home.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import RecentEstate from '../estates/RecentEstate';
-import DisplayEstate from '../displayEstate/DisplayEstate';
-// import ContactUs from '../contact/ContactUs';
+import RecentEstate from '../recentEstates/RecentEstate';
+// import DisplayEstate from '../displayEstate/DisplayEstate';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import DisplayHouse from '../house/DisplayHouse';
+import DisplayLand from '../land/DisplayLand';
+import ContactUs from '../contact/ContactUs';
 
 export default function Home() {
     const [activeButton, setActiveButton] = useState("");
@@ -12,6 +16,42 @@ export default function Home() {
     const isActive = (btn) => {
         setActiveButton(btn);
     }
+
+    const RecentlyEstate = async () => {
+        try {
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?pageNumber=1");
+            return data;
+        } catch (error) {
+            console.error("Error fetching estates:", error);
+            throw error;
+        }
+    }
+
+    const displayHouse = async () => {
+        try {
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=House&pageNumber=1");
+            return data;
+        } catch (error) {
+            console.error("Error fetching house estates:", error);
+            throw error;
+        }
+    }
+
+    const displayLand = async () => {
+        try {
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=Land&pageNumber=1");
+            return data;
+        } catch (error) {
+            console.error("Error fetching house estates:", error);
+            throw error;
+        }
+    }
+
+    const { data: estateData, isLoading: isEstateLoading } = useQuery("displayEstate", RecentlyEstate );
+    const { data: estateData1, isLoading: isEstateLoading1} = useQuery("displayHouseEstate", displayHouse);
+    const { data: estateDataLand, isLoading: isLoadingLand} = useQuery("displayLandEstate", displayLand);
+
+
     return (
         <>
         <div className='container'>
@@ -117,11 +157,12 @@ export default function Home() {
             </div>
         </div>
 
-        <RecentEstate/>
+        <RecentEstate rs={estateData} loadingR={isEstateLoading}/>
         
-        <DisplayEstate/>.
+        <DisplayHouse sHouse={estateData1} loadingH={isEstateLoading1}/>
 
-        {/* <ContactUs/> */}
+        <DisplayLand sLand={estateDataLand} loadingL={isLoadingLand}/>
+        <ContactUs/>
         </>
     )
 }
