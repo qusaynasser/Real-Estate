@@ -35,6 +35,7 @@ export default function DetalisEstate() {
     if(loading) {
         return <h1>Loading....</h1>
     }
+    const showBathroomsBedrooms = !["Store", "Land"].includes(data.typeEstates);
   return (
     <div className='container mt-4 mb-5'>
         <div className="detal my-3 ">
@@ -77,8 +78,12 @@ export default function DetalisEstate() {
                 <p className={`${style.infoState}`}>State Shape</p>
                 <p className={`${style.infoState}`}>Net M² </p>
                 <p className={`${style.infoState}`}>Price</p>
+                {showBathroomsBedrooms&&
+                <>
                 <p className={`${style.infoState}`}>Count Bedrooms</p>
                 <p className={`${style.infoState}`}>Count Bathrooms</p>
+                </>
+                }
                 </div>
 
                 
@@ -89,8 +94,12 @@ export default function DetalisEstate() {
                     <p className={`${style.detailState}`}>{data.typeEstates}</p>
                     <p className={`${style.detailState}`}>{data.area} M²</p>
                     <p className={`${style.detailState}`}>{data.price}$</p>
+                    {showBathroomsBedrooms&&
+                    <>
                     <p className={`${style.detailState}`}>{data.bedrooms}</p>
                     <p className={`${style.detailState}`}>{data.bathrooms}</p>
+                    </>
+                    }
                 </div>
                 <div className="col-md-1"></div>
                 <div className="col-md-2">

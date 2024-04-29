@@ -10,11 +10,15 @@ export default function Profile() {
   let { loading, userToken } = useContext(UserContext);
   const [isAccountDeleted, setIsAccountDeleted] = useState(false);
   const [showModal, setShowModal] = useState(false); // حالة عرض Modal
-  let [userId, setUserId] = useState(null);
+  let [userId, setUserId] = useState(() => {
+    return localStorage.getItem('userId') || null;
+  });
 
   useEffect(() => {
-    setUserId(localStorage.getItem('userId'));
-  }, []);
+    if(userId){
+      localStorage.setItem('userId', userId);
+    }
+  }, [userId]);
 
   const handleClose = () => setShowModal(false); // إغلاق Modal
 

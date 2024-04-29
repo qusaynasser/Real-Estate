@@ -32,12 +32,18 @@ const AddState = () => {
         formData.append("ownerId",userId);
         formData.append("address", address);
         formData.append("typeEstates",typeEstates);
-        formData.append("bathrooms", parseInt(bathrooms));
-        formData.append("bedrooms", parseInt(bedrooms));
+        // formData.append("bathrooms", parseInt(bathrooms));
+        // formData.append("bedrooms", parseInt(bedrooms));
         formData.append("price", parseInt(price));
         formData.append("area", parseInt(area));
         formData.append("typeEstateSR", typeEstateSR);
         formData.append("description",description);
+
+        if (["House", "Apartment", "Chalet"].includes(typeEstates)) {
+            formData.append("bathrooms", parseInt(bathrooms));
+            formData.append("bedrooms", parseInt(bedrooms));
+        }
+
         for (let i = 0; i < images.length; i++) {
             formData.append("images", images[i]);
         }
@@ -65,11 +71,22 @@ const AddState = () => {
         } catch (err) {
             console.log(err);
         }
-        const form=document.getElementById("myForm");
-        form.reset();
+
+        // Explicitly reset state fields
+        setUserId("");
+        setAddress("");
+        setTypeEstates("");
+        setBathrooms("");
+        setBedrooms("");
+        setPrice("");
+        setArea("");
+        setTypeEstateSR("");
+        setDescription("");
+        setImages([]);
     };
     
-    const showBathroomsBedrooms = ["House", "Apartment", "Chalet",""].includes(typeEstates);
+    // const showBathroomsBedrooms = ["House", "Apartment", "Chalet",""].includes(typeEstates);
+    const showBathroomsBedrooms = !["Store", "Land"].includes(typeEstates);
 
     return (
         <div className="container">

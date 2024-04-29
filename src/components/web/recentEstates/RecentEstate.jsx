@@ -29,7 +29,7 @@ export default function Estate({rs,loadingR}) {
                             </Link>
                             <span className={`${style.addres}`}>{state.address}</span>
                             <span className={`${style.name}`}>{state.ownerId.name}</span>
-                            <span className={`${style.phone}`}>{state.ownerId.phone}</span>
+                            <span className={`${style.phone}`}>{state.ownerId.phone}</span> 
                             <span className={`${style.price}`}>${state.price}</span>
                         </div>
                     </div>

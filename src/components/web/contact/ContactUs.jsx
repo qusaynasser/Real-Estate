@@ -51,7 +51,6 @@ function ContactUs() {
                                 onChange={formik.handleChange}
                                 
                                 onBlur={formik.handleBlur}
-                                 
                             /><br /><br />
 
                             <label htmlFor="email" className="form-label"><span className="p-2">Email:</span></label>

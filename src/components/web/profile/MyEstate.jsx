@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 
 export default function MyEstate() {
     let {userToken}=useContext(UserContext);
+    // let [loading,setLoading]=useState(false);
     const [userId, setUserId] = useState(() => {
         // Initialize userId from local storage or null if not present
         return localStorage.getItem('userId') || null;
@@ -38,18 +39,28 @@ export default function MyEstate() {
     console.log(data);
 
     const deletEstate = async (EstateId)=>{
+      // setLoading(true);
       const {data}=await axios.delete(`https://estatetest.onrender.com/api/estate/${EstateId}`,
       {headers:{token:userToken}});
       console.log(data);
       if(data.message=="success")
       {
         swal("Deleted Success!", "You clicked the button!", "success");
+        window.location.reload();
       }
     }
     if(isLoading)
     {
         return <h1>Loading...</h1>
     }
+    // if(loading)
+    // {
+    //   return <div className="d-flex justify-content-center">
+    // <div className="spinner-border" role="status">
+    //   <span className="visually-hidden">Loading...</span>
+    // </div>
+    // </div>  
+    // }
 
   return (
     <div className='container my-5'>
@@ -65,6 +76,7 @@ export default function MyEstate() {
               <p className={`${style.type}`}>{estates.typeEstates}</p>
               <p className={`${style.address}`}>{estates.address}</p>
               <p className={`${style.area}`}>{estates.area} m²</p>
+
               <div className={`${style.btnDelete}`}>
               <p className={`${style.chose}`}>{estates.typeEstateSR}</p>
               <button type="button" className="btn btn-danger" onClick={()=>deletEstate(estates._id)}>Delete</button>

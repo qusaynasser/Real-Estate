@@ -14,22 +14,15 @@ export default function SeeAllHouse() {
    
     let [cityName,setCityName] = useState("");
     let [typeEatateS,setTypeEatateS]=useState("");
-    let [SR,setSR]=useState("");
+    let [renter_seller,setRenter_seller]=useState("");
     // let [price,setPrice]=useState("");
     // let [area,setArea]=useState("");
 
     const handelSubmit=async (e)=>{
         e.preventDefault();
         console.log("test");
-        const data=new FormData();
-        data.append("cityName",cityName);
-        data.append("typeEatateS",typeEatateS);
-        data.append("SR",SR);
-        // data.append("price",price);
-        // data.append("area",area);
-
         try{
-            const {data}=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${SR}&typeEatateS=House&maxprice=500000&minprice=0`);
+            const {data}=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${renter_seller}&typeEatateS=House&maxprice=500000&minprice=0`);
             console.log(data);
             return data;
         }catch(err){
@@ -67,7 +60,7 @@ export default function SeeAllHouse() {
 
                         <div className="col-md-3">
                             <div className={`${style.rentORsells}`}>
-                                <select className="form-select " value={SR} onChange={(e)=>setSR(e.target.value)}>
+                                <select className="form-select " value={renter_seller} onChange={(e)=>setRenter_seller(e.target.value)}>
                                     <option value="">renterORseller</option>
                                     <option value="Rent">Renter</option>
                                     <option value="Sale">Seller</option>
@@ -117,7 +110,7 @@ export default function SeeAllHouse() {
                                 <p className={`${style.type}`}>{estate.typeEstates}</p>
                                 <p className={`${style.address}`}>{estate.address}</p>
                                 <p className={`${style.area}`}>{estate.area} m²</p>
-                                <p className={`${style.chose}`}>{estate.typeEstateSR}</p>
+                                <p className={`${style.chose}`}>{estate.typeEstaterenter_seller}</p>
                             </Link>
                         </div>
                     </div>
