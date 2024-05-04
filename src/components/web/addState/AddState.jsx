@@ -3,10 +3,15 @@ import axios from "axios";
 import style from '../addState/AddState.module.css'
 import { UserContext } from "../context/User";
 import { toast } from "react-toastify";
+import {useNavigate } from 'react-router-dom'
 
 const AddState = () => {
-    let { userToken } = useContext(UserContext);
-    let [userId,setUserId]=useState("");
+    const navigat=useNavigate();
+    let { userToken} = useContext(UserContext);
+    console.log(userToken);
+    let [userId,setUserId]=useState(()=>{
+        return localStorage.getItem('userId') || null;
+    });
 
     const [address, setAddress] = useState("");
     const [typeEstates, setTypeEstates] = useState("");
@@ -19,11 +24,12 @@ const AddState = () => {
     const [images, setImages] = useState([]);
     
     useEffect(()=>{
-    if(localStorage.getItem("userId"))
-    {
-        setUserId(localStorage.getItem("userId"));
-    }
-    },[])
+        if(userId)
+        {
+            localStorage.setItem('userId',userId);
+        }
+    },[userId])
+
     const handleSubmit = async (e) => 
     {
         e.preventDefault();
@@ -32,8 +38,6 @@ const AddState = () => {
         formData.append("ownerId",userId);
         formData.append("address", address);
         formData.append("typeEstates",typeEstates);
-        // formData.append("bathrooms", parseInt(bathrooms));
-        // formData.append("bedrooms", parseInt(bedrooms));
         formData.append("price", parseInt(price));
         formData.append("area", parseInt(area));
         formData.append("typeEstateSR", typeEstateSR);
@@ -65,6 +69,7 @@ const AddState = () => {
             if(data.message=="success")
             {
                 toast.success("Successfully addedestate");
+                navigat('/profile/myEstate');
             }
             // console.log(res.data);
 
@@ -73,7 +78,6 @@ const AddState = () => {
         }
 
         // Explicitly reset state fields
-        setUserId("");
         setAddress("");
         setTypeEstates("");
         setBathrooms("");
@@ -112,7 +116,7 @@ const AddState = () => {
                 <div className="col-md-3">
                     <div className="type">
                     <label className={`mb-2 ${style.label}`}><span className="text-danger">*</span> Type of State:</label>
-                    <select className="form-select w-75 border-4" required value={typeEstates} onChange={(e) => setTypeEstates(e.target.value)}>
+                    <select className="form-select w-75 border-4"  required value={typeEstates} onChange={(e) => setTypeEstates(e.target.value)}>
                         <option value="">Property Type</option>
                         <option value="House">House</option>
                         <option value="Apartment">Flat</option>

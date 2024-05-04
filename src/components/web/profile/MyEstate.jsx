@@ -70,7 +70,7 @@ export default function MyEstate() {
           <div className="col-md-3" key={estates._id}>
             <div className={`mt-3 ${style.card}`}>
               <Link to={`/ditalState/${estates._id}`}>
-              <img src={estates.imageUrl} alt='Estate'/>
+              <img src={estates.imageUrl[0]} alt='Estate'/>
               </Link>
               <p className={`${style.price}`}>{estates.price} $</p>
               <p className={`${style.type}`}>{estates.typeEstates}</p>

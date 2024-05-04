@@ -25,7 +25,7 @@ export default function Estate({rs,loadingR}) {
                     <div className={`col-md-6  ${style.item}`} key={state._id}>
                         <div className="img">
                             <Link to={`/ditalState/${state._id}`}>
-                            <img src={state.imageUrl}/>
+                            <img src={state.imageUrl[0]}/>
                             </Link>
                             <span className={`${style.addres}`}>{state.address}</span>
                             <span className={`${style.name}`}>{state.ownerId.name}</span>

@@ -29,7 +29,7 @@ export default function Home() {
 
     const displayHouse = async () => {
         try {
-            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=House&pageNumber=1");
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House&pageNumber=1");
             return data;
         } catch (error) {
             console.error("Error fetching house estates:", error);
@@ -39,7 +39,7 @@ export default function Home() {
 
     const displayLand = async () => {
         try {
-            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=Land&pageNumber=1");
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=Land&pageNumber=1");
             return data;
         } catch (error) {
             console.error("Error fetching house estates:", error);

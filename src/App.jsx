@@ -51,7 +51,7 @@ export default function App() {
       },
       {
         path:"addState",
-        element:<AddState/>
+        element:<AddState/>,
       },
       {
         path:"displayEstate",
@@ -76,7 +76,8 @@ export default function App() {
           {
             path:"searchSeeAll",
             element:<SearchSeeAll/>
-          }
+          },
+          
         ]
       },
       {
@@ -91,6 +92,7 @@ export default function App() {
             index:true,
             element:<UserInfo/>
           },
+          
           {
             path:"myEstate",
             element:<MyEstate/>,

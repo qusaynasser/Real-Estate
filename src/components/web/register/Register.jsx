@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { registerSchema } from '../../../validation/Validation'
 import Input from '../../shared/Input'
 import style from '../login/Login.module.css'
@@ -9,12 +9,14 @@ import { toast } from 'react-toastify'
 
 export default function Register() {
     const navigat=useNavigate();
+    const [passwordFocused, setPasswordFocused] = useState(false);
     const initialValues=
     {
         name: '',
         email:'',
         phone:'',
         password:'',
+        confirmPassword:'',
     }
     const onSubmit=async users=>{
         try{
@@ -41,12 +43,12 @@ export default function Register() {
     const inputs=[
     
     {
-      id:'name',
-      name:'name',
-      title:'UserName',
-      className:'form-control',
-      type:'text',
-      value:formik.values.name,
+    id:'name',
+    name:'name',
+    title:'UserName',
+    className:'form-control',
+    type:'text',
+    value:formik.values.name,
     },
     {
     id:'email',
@@ -70,9 +72,18 @@ export default function Register() {
     title:'Password',
     type:'password',
     className:'form-control',
-    value:formik.values.password
+    value:formik.values.password,
+    onFocus: () => setPasswordFocused(true),
+    onBlur: () => setPasswordFocused(false)
     },
-    
+    {
+        id:'confirmPassword',
+        name:'confirmPassword',
+        title:'Confirm Password',
+        type:'password',
+        className:'form-control',
+        value:formik.values.confirmPassword
+        },
     ]
 
     const renderInputs=inputs.map((input,index)=>{
@@ -87,6 +98,7 @@ export default function Register() {
         errors={formik.errors}
         touched={formik.touched}
         onBlur={formik.handleBlur}
+        onFocus={input.onFocus}
         key={index}/>
         )
     })
@@ -112,6 +124,18 @@ return (
                 {renderInputs}
                 <button type="submit" className={`${style.btnLogin}`} disabled={!formik.isValid}>Login</button>
                 </form>
+
+                {passwordFocused && (
+                <div className="password-rules">
+                    <ul>
+                        <li>At least 8 characters long</li>
+                        <li>Contains a number</li>
+                        <li>Contains an uppercase letter</li>
+                        <li>Contains a lowercase letter</li>
+                        <li>Contains a special character (!@#$%^&*)</li>
+                    </ul>
+                </div>
+            )}
             </div>
         </div>
 

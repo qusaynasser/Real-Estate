@@ -15,12 +15,12 @@ export default function DisplayLand({ sLand, loadingL }) {
                 <Link to={"/allLand"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">
-                {sLand.estates1 ? sLand.estates1.map((estate) =>
+                {sLand.estates ? sLand.estates.map((estate) =>
 
                     <div className="col-md-3" key={estate._id}>
                         <div className={`${style.card}`}>
                             <Link to={`/ditalState/${estate._id}`} className='text-decoration-none'>
-                                <img src={estate.imageUrl} alt='Estate' />
+                                <img src={estate.imageUrl[0]} alt='Estate' />
                                 <p className={`${style.price}`}>{estate.price} $</p>
                                 <p className={`${style.type}`}>{estate.typeEstates}</p>
                                 <p className={`${style.address}`}>{estate.address}</p>

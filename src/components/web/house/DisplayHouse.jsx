@@ -16,12 +16,12 @@ export default function DisplayHouse({ sHouse, loadingH }) {
                 <Link to={"/allHouse"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">
-                {sHouse.estates1 ? sHouse.estates1.map((estate) =>
+                {sHouse.estates ? sHouse.estates.map((estate) =>
 
                     <div className="col-md-3 " key={estate._id}>
                         <div className={`${style.card}`}>
                             <Link to={`/ditalState/${estate._id}`} className='text-decoration-none'>
-                                <img src={estate.imageUrl} alt='Estate' />
+                                <img src={estate.imageUrl[0]} alt='Estate' />
                                 <p className={`${style.price}`}>{estate.price} $</p>
                                 <p className={`${style.type}`}>{estate.typeEstates}</p>
                                 <p className={`${style.address}`}>{estate.address}</p>

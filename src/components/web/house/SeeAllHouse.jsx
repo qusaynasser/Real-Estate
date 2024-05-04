@@ -5,26 +5,31 @@ import { Link } from 'react-router-dom';
 import style from './DispalyH.module.css';
 
 export default function SeeAllHouse() {
+    // let [dataState,setDataState]=useState("");
     const seeAllH = async () => {
-        const { data } = await axios.get(`https://estatetest.onrender.com/api/estate/house?typeEatateS=House`);
+        const  {data}  = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House");
+        // setDataState(data);
         return data;
+        
     }
     const { data, isLoading } = useQuery("see-all", seeAllH);
-    // console.log(data);
+    console.log(data);
    
     let [cityName,setCityName] = useState("");
     let [typeEatateS,setTypeEatateS]=useState("");
     let [renter_seller,setRenter_seller]=useState("");
     // let [price,setPrice]=useState("");
     // let [area,setArea]=useState("");
+    
 
     const handelSubmit=async (e)=>{
         e.preventDefault();
         console.log("test");
         try{
-            const {data}=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${renter_seller}&typeEatateS=House&maxprice=500000&minprice=0`);
-            console.log(data);
-            return data;
+            const result=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${renter_seller}&typeEatateS=House&maxprice=500000&minprice=0`);
+            console.log(result);
+            // setDataState(result)
+            return result;
         }catch(err){
             console.error(err);
         }
@@ -99,24 +104,24 @@ export default function SeeAllHouse() {
                 </form>
             </div>
 
-            <div className="row">
-                {data.estates1 ? data.estates1.map((estate) =>
+                <div className="row">
+                    {data.estates ? data.estates.map((estate) =>
 
-                    <div className="col-md-3" key={estate._id}>
-                        <div className={`${style.card}`}>
-                            <Link to={`/ditalState/${estate._id}`}>
-                                <img src={estate.imageUrl} alt='Estate' />
-                                <p className={`${style.price}`}>{estate.price} $</p>
-                                <p className={`${style.type}`}>{estate.typeEstates}</p>
-                                <p className={`${style.address}`}>{estate.address}</p>
-                                <p className={`${style.area}`}>{estate.area} m²</p>
-                                <p className={`${style.chose}`}>{estate.typeEstaterenter_seller}</p>
-                            </Link>
+                        <div className="col-md-3" key={estate._id}>
+                            <div className={`${style.card}`}>
+                                <Link to={`/ditalState/${estate._id}`}>
+                                    <img src={estate.imageUrl[0]} alt='Estate' />
+                                    <p className={`${style.price}`}>{estate.price} $</p>
+                                    <p className={`${style.type}`}>{estate.typeEstates}</p>
+                                    <p className={`${style.address}`}>{estate.address}</p>
+                                    <p className={`${style.area}`}>{estate.area} m²</p>
+                                    <p className={`${style.chose}`}>{estate.typeEstaterenter_seller}</p>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
 
-                ) : <h1>State null</h1>}
-            </div>
+                    ) : <h1>State null</h1>}
+                </div>
         </div>
     )
 }

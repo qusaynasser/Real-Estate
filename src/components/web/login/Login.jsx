@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { loginSchema } from '../../../validation/Validation'
 import Input from '../../shared/Input'
 import style from '../login/Login.module.css'
@@ -10,7 +10,9 @@ import { UserContext } from '../context/User'
 
 export default function Login() {
     const navigat=useNavigate();
-    const {setUserToken,setUserId}=useContext(UserContext);
+    const {setUserToken,setUserId,userData}=useContext(UserContext);
+    console.log(userData);
+    const [ifError,setIfError]=useState(false);
     const initialValues=
     {
         email:'',
@@ -18,7 +20,9 @@ export default function Login() {
         // checkbox:'',
     }
     const onSubmit=async users=>{
-        const {data}=await axios.post("https://estatetest.onrender.com/api/auth/login",users);
+        try
+        {
+            const {data}=await axios.post("https://estatetest.onrender.com/api/auth/login",users);
         console.log(data);
         if(data.message=='success')
         {   
@@ -26,8 +30,14 @@ export default function Login() {
             setUserToken(data.token);
             localStorage.setItem("userId",data.other._id);
             setUserId(data.other._id);
-            toast.success("Login Success");
+            toast.success(`Hello ${userData.name}`);
             navigat('/');
+        }
+        }
+        catch(error)
+        {
+            console.error(error);
+            setIfError(true);
         }
     }
 
@@ -98,6 +108,11 @@ return (
                 <div className={`${style.content}`}>
                     <h1>Login</h1>
                     <p>If you are already a member you can login with your email address and password.</p>
+                    {ifError && (
+              <div className="alert alert-danger w-75" role="alert">
+                Email or Password error try again
+              </div>
+            )}
                 </div>
 
                 <form className="mt-3 " onSubmit={formik.handleSubmit}>
@@ -105,6 +120,10 @@ return (
                 <button type="submit" className={`${style.btnLogin}`} disabled={!formik.isValid}>Login</button>
                 </form>
 
+                {/* <div className="error text-danger fw-bold mt-3">
+                {ifError&&<p>email or password error try again</p>}
+                </div> */}
+                
                 <div className={`${style.dontAcount}`}>
                     <p>Dont have an account ?<Link to={"/register"}> <span> Register here</span> </Link></p>
                 </div>

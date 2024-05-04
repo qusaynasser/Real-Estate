@@ -107,7 +107,7 @@ export default function SeeAllLand() {
             </div>
 
             <div className="row">
-                {data.estates1 ? data.estates1.map((estate) =>
+                {data.estates ? data.estates.map((estate) =>
 
                     <div className="col-md-3" key={estate._id}>
                         <div className={`my-4 ${style.card}`}>
