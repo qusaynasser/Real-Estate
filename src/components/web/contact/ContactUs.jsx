@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import style from './Contact.module.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useFormik } from 'formik';
-import { ContactSchema } from "../../../validation/Validation";
-import Input from "../../shared/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelopeCircleCheck, faLocationPinLock, faMobileRetro } from "@fortawesome/free-solid-svg-icons";
 import { UserValidation } from "../../../validation/UserValidation";
@@ -24,10 +21,19 @@ function ContactUs() {
         message:'',
     })
     let ChangeData=(e)=>{
+        const { name, value } = e.target;
         setUsers({
             ...users,
-            [e.target.name]:e.target.value
-        })
+            [name]:value
+        });
+
+        if(errors[name])
+        {
+            setErrors({
+                ...errors,
+                [name]:''
+            });
+        }
     }
     
     const handelSubmit=async(e)=>{
@@ -62,7 +68,6 @@ function ContactUs() {
         
     }
 
-    
     return (
         <div className="container mb-5">
             <div className={`row ${style.container}`}>
@@ -75,7 +80,7 @@ function ContactUs() {
                 </div>
                 {/* <div className="col-md-4"></div> */}
                 <div className="col-md-6">
-                    <form onSubmit={handelSubmit} id="myform">
+                    <form onSubmit={handelSubmit}>
                         <div className="name">
                             <input type="text" name="name" className="form-control" value={users.name} onChange={ChangeData} id="exampleFormControlInput1" placeholder="Your Name" />
                             {errors.name && <p className='text-danger'>{errors.name}</p>}

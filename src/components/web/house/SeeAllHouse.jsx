@@ -1,24 +1,30 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import style from './DispalyH.module.css';
 
 export default function SeeAllHouse() {
-    // let [dataState,setDataState]=useState("");
+    let [dataState,setDataState]=useState("");
+    const [loading,setLoading] = useState(false);
     const seeAllH = async () => {
-        const  {data}  = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House");
-        // setDataState(data);
-        return data;
+        setLoading(true);
+        const  data  = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House");
+        setDataState(data.data.estates);
+        setLoading(false);
+        // return data.data.estates;
         
     }
-    const { data, isLoading } = useQuery("see-all", seeAllH);
-    console.log(data);
+    // const { data, isLoading } = useQuery("see-all", seeAllH);
+    useEffect(()=>{
+        seeAllH();
+    },[])
+    console.log(dataState);
    
     let [cityName,setCityName] = useState("");
     let [typeEatateS,setTypeEatateS]=useState("");
     let [renter_seller,setRenter_seller]=useState("");
-    // let [price,setPrice]=useState("");
+    let [price,setPrice]=useState("");
     // let [area,setArea]=useState("");
     
 
@@ -26,15 +32,17 @@ export default function SeeAllHouse() {
         e.preventDefault();
         console.log("test");
         try{
-            const result=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${renter_seller}&typeEatateS=House&maxprice=500000&minprice=0`);
+            setLoading(true);
+            const result=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${renter_seller}&typeEatateS=House&maxprice=${price}&minprice=0`);
             console.log(result);
-            // setDataState(result)
-            return result;
+            setDataState(result.data.estates);
+            setLoading(false);
+            // return result.data.estates;
         }catch(err){
             console.error(err);
         }
     }
-    if (isLoading) {
+    if (loading) {
         return <h1>Loading...</h1>
     }
     return (
@@ -75,7 +83,7 @@ export default function SeeAllHouse() {
 
                         <div className="col-md-6">
                             <div className={`${style.prices}`}>
-                                <select className="form-select ">
+                                <select className="form-select " value={price} onChange={(e)=>setPrice(e.target.value)}>
                                     <option value="">Price</option>
                                     <option value="House">0-500$</option>
                                     <option value="Apartment">500-10000$</option>
@@ -105,10 +113,10 @@ export default function SeeAllHouse() {
             </div>
 
                 <div className="row">
-                    {data.estates ? data.estates.map((estate) =>
+                    {dataState.length ? dataState.map((estate) =>
 
                         <div className="col-md-3" key={estate._id}>
-                            <div className={`${style.card}`}>
+                            <div className={`mt-3 ${style.card}`}>
                                 <Link to={`/ditalState/${estate._id}`}>
                                     <img src={estate.imageUrl[0]} alt='Estate' />
                                     <p className={`${style.price}`}>{estate.price} $</p>

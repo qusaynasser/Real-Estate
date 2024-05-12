@@ -1,17 +1,19 @@
 import axios from 'axios'
-import React, { useState } from 'react'
-import { useQuery } from 'react-query';
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import style from '../house/DispalyH.module.css';
 
 export default function SeeAllLand() {
+    let [dataState,setDataState]=useState([]);
     const seeAllL = async () => {
-        const { data } = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=Land");
-        return data;
+        const data  = await axios.get("https://estatetest.onrender.com/api/estate/house?typeEatateS=Land");
+        setDataState(data.data.estates);
+        // return data;
     }
-    const { data, isLoading } = useQuery("see-all", seeAllL);
-    // console.log(data);
-   
+    useEffect(()=>{
+        seeAllL();
+    },[]);
+
     let [cityName,setCityName] = useState("");
     let [typeEatateS,setTypeEatateS]=useState("");
     let [SR,setSR]=useState("");
@@ -21,24 +23,18 @@ export default function SeeAllLand() {
     const handelSubmit=async (e)=>{
         e.preventDefault();
         console.log("test");
-        const data=new FormData();
-        data.append("cityName",cityName);
-        data.append("typeEatateS",typeEatateS);
-        data.append("SR",SR);
-        // data.append("price",price);
-        // data.append("area",area);
-
         try{
-            const {data}=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${SR}&typeEatateS=Land&maxprice=500000&minprice=0`);
-            console.log(data);
-            return data;
+            const resultSearch=await axios.get(`https://estatetest.onrender.com/api/estate/all?cityName=${cityName}&SR=${SR}&typeEatateS=Land&maxprice=500000&minprice=0`);
+            setDataState(resultSearch.data.estates);
+            console.log(resultSearch);
+            // return data;
         }catch(err){
             console.error(err);
         }
     }
-    if (isLoading) {
-        return <h1>Loading...</h1>
-    }
+    // if (isLoading) {
+    //     return <h1>Loading...</h1>
+    // }
     return (
         <div className='container my-5'>
             <p className={` ${style.titleState}`}>All Lands</p>
@@ -107,12 +103,12 @@ export default function SeeAllLand() {
             </div>
 
             <div className="row">
-                {data.estates ? data.estates.map((estate) =>
+                {dataState ? dataState.map((estate) =>
 
                     <div className="col-md-3" key={estate._id}>
                         <div className={`my-4 ${style.card}`}>
                             <Link to={`/ditalState/${estate._id}`}>
-                                <img src={estate.imageUrl} alt='Estate' />
+                                <img src={estate.imageUrl[0]} alt='Estate' />
                                 <p className={`${style.price}`}>{estate.price} $</p>
                                 <p className={`${style.type}`}>{estate.typeEstates}</p>
                                 <p className={`${style.address}`}>{estate.address}</p>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-export let UserContext=createContext();
+export let UserContext=createContext({});
 export function UserContextProvider({children})
 {
     let [userToken,setUserToken]=useState(null);
@@ -20,7 +20,7 @@ export function UserContextProvider({children})
             setLoading(false);
         }
     }
-    
+
     useEffect(()=>{
         if(userToken)
         {

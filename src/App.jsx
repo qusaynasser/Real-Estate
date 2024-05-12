@@ -14,7 +14,6 @@ import DetalisEstate from './components/web/displayEstate/DetalisEstate';
 import UpdateInfo from './components/web/profile/UpdateInfo';
 import SeeAllHouse from './components/web/house/SeeAllHouse';
 import SeeAllLand from './components/web/land/SellAllLand';
-import SearchSeeAll from './components/web/land/SearchSeeAll';
 import ContactUs from './components/web/contact/ContactUs';
 
 export default function App() {
@@ -71,14 +70,7 @@ export default function App() {
       },
       {
         path:"allLand",
-        element:<SeeAllLand/>,
-        children:[
-          {
-            path:"searchSeeAll",
-            element:<SearchSeeAll/>
-          },
-          
-        ]
+        element:<SeeAllLand/>
       },
       {
         path:"contact",
@@ -101,10 +93,6 @@ export default function App() {
                 path:"ditalState/:EstateId",
                 element:<DetalisEstate/>
               },
-              // {
-              //   path:"myEstate/:EstateId",
-              //   element:<MyEstate/>,
-              // }
             ]
           },
           {

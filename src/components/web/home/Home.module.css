@@ -41,13 +41,13 @@
     position: absolute;
     top: 450px;
     left: 100px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
-.navitem a {
+/* .navitem a {
     position: relative;
     top: -36px;
     left: 0px;
@@ -63,7 +63,7 @@
     line-height: 36px;
     letter-spacing: 0.2em;
     
-}
+} */
 
 .location,.property,.price
 {
@@ -78,13 +78,13 @@ font-weight: 600;
 .location p
 {
     position: absolute;
-    top: -70px;
+    top: 7px;
     left: 30px;
 }
 .location select
 {
 position: absolute;
-top: -40px;
+top: 40px;
 left: 20px;
 color: #8F90A6;
 font-family: "Inter", sans-serif;
@@ -99,7 +99,7 @@ width: 70%;
     position: absolute;
     width: 60px;
     height: 3px;
-    top: 37px;
+    top: 43px;
     left: 190px;
     border: 2px;
     background-color: #DCDCEB;
@@ -123,13 +123,13 @@ width: 70%;
 .property p
 {
     position: absolute;
-    top: -70px;
+    top: 7px;
     left: -40px;
 }
 .property select
 {
     position: absolute;
-    top: -40px;
+    top: 40px;
     left: -43px;
     color: #8F90A6;
     font-family: "Inter", sans-serif;
@@ -162,13 +162,13 @@ width: 70%;
 .price p
 {
     position: absolute;
-    top: -70px;
+    top: 7px;
     left: -22px;
 }
 .price select
 {
     position: absolute;
-    top: -40px;
+    top: 40px;
     left: -25px;
     color: #8F90A6;
     font-family: "Inter", sans-serif;
@@ -178,7 +178,7 @@ width: 70%;
 .search 
 {
     position: relative;
-    top: -55px;
+    top: 30px;
     left: 19px;
     width: 50px;
     height: 50px;

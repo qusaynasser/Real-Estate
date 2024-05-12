@@ -11,11 +11,11 @@ import DisplayLand from '../land/DisplayLand';
 import ContactUs from '../contact/ContactUs';
 
 export default function Home() {
-    const [activeButton, setActiveButton] = useState("");
+    // const [activeButton, setActiveButton] = useState("");
 
-    const isActive = (btn) => {
-        setActiveButton(btn);
-    }
+    // const isActive = (btn) => {
+    //     setActiveButton(btn);
+    // }
 
     const RecentlyEstate = async () => {
         try {
@@ -65,7 +65,7 @@ export default function Home() {
                 </div>
 
                 <div className={`${style.rectangle}`}>
-                    <ul className="nav nav-pills gap-5">
+                    {/* <ul className="nav nav-pills gap-5">
                         <li className={`${style.navitem}`}>
                             <a className={`nav-link ${activeButton === "rent" ? "active" : ""}`}
                                 onClick={() => isActive("rent")} >RENT</a>
@@ -78,7 +78,7 @@ export default function Home() {
                             <a className={`nav-link ${activeButton === "sell" ? "active" : ""}`}
                                 onClick={() => isActive("sell")} >SELL</a>
                         </li>
-                    </ul>
+                    </ul> */}
 
                     <div className="row">
                         <div className="col-md-4">
