@@ -41,6 +41,9 @@ export default function Navbar() {
         <li className="nav-item">
           <a className={`${style.navLink}`} href="#">About Us</a>
         </li>
+        <li className={`nav-item`}>
+          <Link className={`${style.userName} `} to={'/ara'}>Ara</Link>
+        </li>
         <li className="nav-item">
           <Link className={`${style.userName}`} to={'/addState'}>Add State</Link>
         </li>

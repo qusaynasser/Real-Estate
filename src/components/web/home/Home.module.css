@@ -190,7 +190,22 @@ width: 70%;
     -ms-transition: .5s;
     -o-transition: .5s;
 }
-.search .icon
+.search1
+{
+    position: relative;
+    top: 30px;
+    right: 19px;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #1DAEFF;
+    transition: .5s;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+}
+.search .icon,.search1 .icon
 {
     position: absolute;
     color: #fff;
@@ -198,7 +213,7 @@ width: 70%;
     left: 15.5px;
     font-size: 20px;
 }
-.search:hover
+.search , .search1:hover
 {
     background-color: #000;
     cursor: pointer;

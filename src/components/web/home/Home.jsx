@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import DisplayHouse from '../house/DisplayHouse';
 import DisplayLand from '../land/DisplayLand';
 import ContactUs from '../contact/ContactUs';
+import DisplayFeedback from '../displayFeedback/DisplayFeedback';
 
 export default function Home() {
     // const [activeButton, setActiveButton] = useState("");
@@ -46,10 +47,20 @@ export default function Home() {
             throw error;
         }
     }
+    const displayFeedback = async () => {
+        try {
+            const { data } = await axios.get("https://estatetest.onrender.com/api/feedback/all?pageNum=1");
+            return data;
+        } catch (error) {
+            console.error("Error fetching house estates:", error);
+            throw error;
+        }
+    }
 
     const { data: estateData, isLoading: isEstateLoading } = useQuery("displayEstate", RecentlyEstate );
     const { data: estateData1, isLoading: isEstateLoading1} = useQuery("displayHouseEstate", displayHouse);
     const { data: estateDataLand, isLoading: isLoadingLand} = useQuery("displayLandEstate", displayLand);
+    const { data: feedback, isLoading: isLoadingFeedback } = useQuery("displayFeedback", displayFeedback);
 
 
     return (
@@ -162,6 +173,9 @@ export default function Home() {
         <DisplayHouse sHouse={estateData1} loadingH={isEstateLoading1}/>
 
         <DisplayLand sLand={estateDataLand} loadingL={isLoadingLand}/>
+
+        <DisplayFeedback df={feedback} loadingR={isLoadingFeedback}/>
+
         <ContactUs/>
         </>
     )
