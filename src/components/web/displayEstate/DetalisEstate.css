@@ -15,3 +15,26 @@
     font-weight: bold !important;
 }
 
+.App {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.toggle-button {
+    position: absolute;
+    top: -180px;
+    left: 195px;
+    padding: 10px 10px;
+    font-size: 13px !important;
+    cursor: pointer;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button.active {
+    background-color: #4caf50;
+    color: white;
+}

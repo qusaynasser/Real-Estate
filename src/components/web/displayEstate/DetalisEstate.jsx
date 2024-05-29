@@ -105,11 +105,13 @@ export default function DetalisEstate() {
                 <div className="col-md-2">
                     <p className={`${style.infoState}`}>Owner Name</p>
                     <p className={`${style.infoState}`}>Owner Number</p>
+                    <p className={`mt-4 ${style.infoState}`}>Property Condition</p>
                 </div>
 
                 <div className="col-md-2">
                     <p className={`${style.detailState}`}>{data.ownerId.name}</p>
                     <p className={`${style.detailState}`}>{data.ownerId.phone}</p>
+                    
                 </div>
             </div>
             

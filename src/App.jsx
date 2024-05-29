@@ -15,7 +15,10 @@ import UpdateInfo from './components/web/profile/UpdateInfo';
 import SeeAllHouse from './components/web/house/SeeAllHouse';
 import SeeAllLand from './components/web/land/SellAllLand';
 import ContactUs from './components/web/contact/ContactUs';
-
+import ResultSearch from './components/web/searchResult/ResultSearch';
+import Dashbord from './components/dashbord/Dashbord';
+import Properties from './components/dashbord/properties/Properties';
+import SearchOnCity from './components/web/searchResult/SearchOnCity';
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
 
@@ -32,6 +35,23 @@ export default function App() {
   },[]);
 
   const router = createBrowserRouter([
+    {
+      path:"/dash",
+      element:<WebLayout/>,
+      children:[
+        {
+          path:"dashboard",
+          element:<Dashbord/>,
+          children:[
+            {
+              path:"properties",
+              element:<Properties/>
+            }
+          ]
+        },
+        
+      ]
+    },
     {
       path: "/",
       element: <WebLayout/>,
@@ -75,6 +95,14 @@ export default function App() {
       {
         path:"contact",
         element:<ContactUs/>
+      },
+      {
+        path:"searchResults",
+        element:<ResultSearch/>
+      },
+      {
+        path:"searchCity",
+        element:<SearchOnCity/>
       },
       {
         path:"profile",

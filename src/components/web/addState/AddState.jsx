@@ -7,12 +7,12 @@ import {useNavigate } from 'react-router-dom'
 
 const AddState = () => {
     const navigat=useNavigate();
-    let { userToken} = useContext(UserContext);
-    console.log(userToken);
-    let [userId,setUserId]=useState(()=>{
-        return localStorage.getItem('userId') || null;
-    });
-
+    let { userToken,userId} = useContext(UserContext);
+    
+    // let [userId,setUserId]=useState(()=>{
+    //     return localStorage.getItem('userId') || null;
+    // });
+    console.log(userId);
     const [address, setAddress] = useState("");
     const [typeEstates, setTypeEstates] = useState("");
     const [bathrooms, setBathrooms] = useState("");
@@ -23,12 +23,12 @@ const AddState = () => {
     const [description, setDescription] = useState("");
     const [images, setImages] = useState([]);
     
-    useEffect(()=>{
-        if(userId)
-        {
-            localStorage.setItem('userId',userId);
-        }
-    },[userId])
+    // useEffect(()=>{
+    //     if(userId)
+    //     {
+    //         localStorage.setItem('userId',userId);
+    //     }
+    // },[userId])
 
     const handleSubmit = async (e) => 
     {

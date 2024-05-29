@@ -1,11 +1,20 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import style from '../house/DispalyH.module.css';
 import { Link } from 'react-router-dom';
+import { DisplayContext } from '../context/Display';
+import { useQuery } from 'react-query';
 
-export default function DisplayLand({ sLand, loadingL }) {
+export default function DisplayLand() {
 
-    if (loadingL) {
+    let {displayLand}=useContext(DisplayContext);
+
+    const getDisplayLand=async()=>{
+        const result = await displayLand();
+        return result;
+    }
+    const {data,isLoading}=useQuery("displayLand",getDisplayLand);
+    if (isLoading) {
         return <h1>Loading...</h1>
     }
     return (
@@ -15,7 +24,7 @@ export default function DisplayLand({ sLand, loadingL }) {
                 <Link to={"/allLand"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">
-                {sLand.estates ? sLand.estates.map((estate) =>
+                {data.estates ? data.estates.map((estate) =>
 
                     <div className="col-md-3" key={estate._id}>
                         <div className={`${style.card}`}>
