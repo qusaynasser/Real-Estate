@@ -7,17 +7,12 @@ import { Bounce, toast } from 'react-toastify'
 
 import InputUpdate from '../../shared/InputUpdate'
 import { UserContext } from '../context/User'
-import { useNavigate } from 'react-router-dom'
+
 
 export default function UpdateInfo() {
-    const navigate=useNavigate();
-    let {userToken,userData}=useContext(UserContext);
+    let {userToken,userData,userId}=useContext(UserContext);
     const [isAccountUpdated, setIsAccountUpdated] = useState(false);
 
-    let [userId,setUserId] =useState(()=>{
-        return localStorage.getItem('userId') || null;
-    })
-    console.log(userId);
 
     const initialValues=
     {
@@ -49,17 +44,13 @@ export default function UpdateInfo() {
         }
     }
     useEffect(()=>{
-        if(userId)
-        {
-            localStorage.setItem('userId',userId);
-        }
         if(isAccountUpdated)
         {
             window.location.reload();
             // navigate("");
             // toast.success("Update Success")
         }
-    },[isAccountUpdated,userId]);
+    },[isAccountUpdated]);
 
     const formik=useFormik({
         initialValues,
