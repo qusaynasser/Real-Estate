@@ -2,14 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom';
-import style from './DispalyH.module.css';
+import style from '../house/DispalyH.module.css';
 
-export default function SeeAllHouse() {
+export default function SeeAllApartment() {
     let [dataState,setDataState]=useState("");
     const [loading,setLoading] = useState(false);
-    const seeAllH = async () => {
+    const seeAllA = async () => {
         setLoading(true);
-        const  data  = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House");
+        const  data  = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=Apartment");
         setDataState(data.data.estates);
         setLoading(false);
         // return data.data.estates;
@@ -17,7 +17,7 @@ export default function SeeAllHouse() {
     }
     // const { data, isLoading } = useQuery("see-all", seeAllH);
     useEffect(()=>{
-        seeAllH();
+        seeAllA();
     },[])
     console.log(dataState);
    
@@ -48,7 +48,7 @@ export default function SeeAllHouse() {
     }
     return (
         <div className='container my-5'>
-            <p className={` ${style.titleState}`}>All Houses</p>
+            <p className={` ${style.titleState}`}>All Apartment</p>
 
             <div className="search">
                 <form onSubmit={handelSubmit}>
@@ -131,13 +131,13 @@ export default function SeeAllHouse() {
 
                         <div className="col-md-3" key={estate._id}>
                             <div className={`mt-3 ${style.card}`}>
-                                <Link to={`/ditalState/${estate._id}`} className=' text-decoration-none'>
+                                <Link to={`/ditalState/${estate._id}`}>
                                     <img src={estate.imageUrl[0]} alt='Estate' />
                                     <p className={`${style.price}`}>{estate.price} $</p>
                                     <p className={`${style.type}`}>{estate.typeEstates}</p>
                                     <p className={`${style.address}`}>{estate.address}</p>
                                     <p className={`${style.area}`}>{estate.area} m²</p>
-                                    <p className={`${style.chose}`}>{estate.typeEstateSR}</p>
+                                    <p className={`${style.chose}`}>{estate.typeEstaterenter_seller}</p>
                                 </Link>
                             </div>
                         </div>

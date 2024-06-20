@@ -51,7 +51,7 @@ export default function Profile() {
   }
 
   return (
-    <aside className={`${style.profile}`}>
+    <aside className={`mb-5 ${style.profile}`}>
       <div className={`${style.profileLinks}`}>
       <nav>
         <Link to="">Info</Link>
@@ -59,6 +59,8 @@ export default function Profile() {
         <Link to="updateInfo">Update My Data</Link>
 
         <Link to="myEstate">My Estate</Link>
+
+        <Link to={"interst"}>Interisting</Link>
 
         <Link  onClick={() => setShowModal(true)}>Delete Account</Link> {/* فتح Modal عند الضغط */}
 
@@ -82,7 +84,8 @@ export default function Profile() {
       </Modal>
 
       </div>
-      <div className="data">
+      
+      <div className={` ${style.d1}`}>
         <Outlet />
       </div>
     </aside>

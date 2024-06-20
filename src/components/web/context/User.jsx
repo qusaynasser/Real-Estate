@@ -9,8 +9,8 @@ export function UserContextProvider({children})
     let [userId,setUserId]=useState(null);
     let [loading,setLoading]=useState(true);
     
-    console.log("USerToken==="+userToken);
-    console.log("UserID==="+userId);
+    // console.log("USerToken==="+userToken);
+    console.log(userData);
 
     const getUserData=async ()=>{
         if(userToken)

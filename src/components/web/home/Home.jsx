@@ -7,6 +7,11 @@ import DisplayHouse from '../house/DisplayHouse';
 import DisplayLand from '../land/DisplayLand';
 import ContactUs from '../contact/ContactUs';
 import {useNavigate } from 'react-router-dom';
+import DisplayApartment from '../apartment/DisplayApartment';
+import DisplayStore from '../store/DisplayStore';
+import DisplayChalet from '../chalet/DisplayChalet';
+import Feedback from '../feedback/Feedback';
+import Location from '../location&likeIt/Location';
 
 export default function Home() {
     
@@ -71,8 +76,8 @@ export default function Home() {
 
                                 <select className="form-select" aria-label="Default select example" value={rentrORseller} onChange={(e)=>setRentrORseller(e.target.value)}>
                                     <option value="">Choose rentrORseller</option>
-                                    <option value="Rent">Renter</option>
-                                    <option value="Sale">Seller</option>
+                                    <option value="Rent">Rent</option>
+                                    <option value="Sale">Sell</option>
                                 </select>
                             </div>
                         </div>
@@ -114,10 +119,14 @@ export default function Home() {
             </div>
         </div>
 
-
+        <Location/>
         <RecentEstate/>
         <DisplayHouse/>
         <DisplayLand/>
+        <DisplayApartment/>
+        <DisplayStore/>
+        <DisplayChalet/>
+        <Feedback/>
         <ContactUs/>
         </>
     )

@@ -57,6 +57,7 @@ transition: ease-in .4s ;
     letter-spacing: 2px;
     line-height: 36px;
     text-decoration: none;
+    cursor: pointer;
 }
 .login
 {

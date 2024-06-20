@@ -19,21 +19,35 @@ import ResultSearch from './components/web/searchResult/ResultSearch';
 import Dashbord from './components/dashbord/Dashbord';
 import Properties from './components/dashbord/properties/Properties';
 import SearchOnCity from './components/web/searchResult/SearchOnCity';
+import SeeAllApartment from './components/web/apartment/SeeAllApartment';
+import SeeAllStore from './components/web/store/SeeAllStore';
+import SeeAllChalet from './components/web/chalet/SeeAllChalet';
+import AddFeedback from './components/web/addFeedback/AddFeedback';
+import Intersting from './components/web/profile/Intersting';
+// import { LoadingContext, LoadingContextProvider } from './components/web/context/Loading';
+// import Loading from './components/web/loading/Loading';
+
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
-
-  useEffect(()=>{
+  // const { startLoading, endLoading, isLoading} = useContext(LoadingContext);
+  
+  useEffect(() => {
     const storedToken = localStorage.getItem("userToken");
     const storedUserId = localStorage.getItem("userId");
-    if(storedToken)
-    {
+
+    // startLoading();
+    if (storedToken && storedUserId) {
       setUserToken(storedToken);
       setUserId(storedUserId);
-      // localStorage.removeItem("userToken");
-      // localStorage.removeItem("userId");
     }
-  },[]);
 
+    // Simulate resource loading
+    // setTimeout(() => {
+    //   endLoading();
+    // }, 3000);
+  }, [setUserToken, setUserId]);
+
+  
   const router = createBrowserRouter([
     {
       path:"/dash",
@@ -76,10 +90,6 @@ export default function App() {
         path:"displayEstate",
         element:<RecentEstate/>
       },
-      // {
-      //   path:"displayHouse",
-      //   element:<DisplayHouse/>
-      // },
       {
         path:"ditalState/:EstateId",
         element:<DetalisEstate/>
@@ -89,12 +99,24 @@ export default function App() {
         element:<SeeAllHouse/>
       },
       {
-        path:"allLand",
+        path:"allLands",
         element:<SeeAllLand/>
       },
       {
         path:"contact",
         element:<ContactUs/>
+      },
+      {
+        path:"allApartments",
+        element:<SeeAllApartment/>
+      },
+      {
+        path:"allStores",
+        element:<SeeAllStore/>
+      },
+      {
+        path:"allChalets",
+        element:<SeeAllChalet/>
       },
       {
         path:"searchResults",
@@ -103,6 +125,10 @@ export default function App() {
       {
         path:"searchCity",
         element:<SearchOnCity/>
+      },
+      {
+        path:"addFeedback",
+        element:<AddFeedback/>
       },
       {
         path:"profile",
@@ -126,6 +152,10 @@ export default function App() {
           {
             path:"updateInfo",
             element:<UpdateInfo/>
+          },
+          {
+            path:"interst",
+            element:<Intersting/>
           }
         ]
       }
@@ -133,8 +163,8 @@ export default function App() {
     },
   ]);
   return (
-    // <UserContextProvider>
-    <RouterProvider router={router} />
-    // </UserContextProvider>
+    
+     <RouterProvider router={router} />
+    
   )
 }

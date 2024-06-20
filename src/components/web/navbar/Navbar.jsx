@@ -20,6 +20,17 @@ export default function Navbar() {
     </div>
   </div>  
   }
+
+  const checkAddState=()=>{
+    if(userToken)
+      {
+        navigate("/addState");
+      }
+      else
+      {
+        navigate("/login");
+      }
+  }
   return (
   
     <nav className="navbar container navbar-expand-lg bg-body-tertiary">
@@ -33,7 +44,7 @@ export default function Navbar() {
           <Link className={`${style.navLink}`} aria-current="page" to={"/"}>Home</Link>
         </li>
         <li className="nav-item">
-          <a className={`${style.navLink}`} href="/myForm">Houses</a>
+          <a className={`${style.navLink}`} href="#">Houses</a>
         </li>
         <li className="nav-item">
           <a className={`${style.navLink}`} href="#">Store</a>
@@ -42,7 +53,7 @@ export default function Navbar() {
           <a className={`${style.navLink}`} href="#">About Us</a>
         </li>
         <li className="nav-item">
-          <Link className={`${style.userName}`} to={'/addState'}>Add State</Link>
+          <a className={`${style.userName}`}  onClick={checkAddState}>Add State</a>
         </li>
         <li className="nav-item dropdown">
         {!userToken?

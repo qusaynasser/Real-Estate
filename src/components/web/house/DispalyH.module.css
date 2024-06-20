@@ -6,6 +6,7 @@
 width: 285px;
 height: 335px;
 border: 1px solid #0000001A;
+background-color: white;
 }
 .titleState
 {
@@ -126,6 +127,7 @@ font-family: "Roboto", sans-serif;
 font-size: 18px;
 font-weight: 500;
 color: #00000080;
+/* color: white; */
 font-style: italic;
 margin-top: 10px;
 }
@@ -139,7 +141,7 @@ margin-top: 10px;
     color: #000;
 }
 
-.description
+.description,.map
 {
     width: 100%;
     height: fit-content;

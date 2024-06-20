@@ -228,12 +228,14 @@ height: 92px;
     -o-border-radius: 30px;
     opacity: 70%;
     height: 450px;
+    
 }
 .imgHome
 {
     position: relative;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 .imgHome p
 {

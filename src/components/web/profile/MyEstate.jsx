@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext} from 'react'
+import React, { useContext, useState} from 'react'
 import { UserContext } from '../context/User'
 import { useQuery, useQueryClient } from 'react-query';
 import style from '../house/DispalyH.module.css';
@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 
 export default function MyEstate() {
   let { userToken, userId } = useContext(UserContext);
+  const [showModal, setShowModal] = useState(false); // حالة عرض Modal
 
   const queryClient = useQueryClient();
 
@@ -40,6 +41,7 @@ export default function MyEstate() {
   const { data, isLoading } = useQuery("myEstate", myEstate);
   console.log(data);
 
+
   const deletEstate = async (EstateId) => {
     const { data } = await axios.delete(`https://estatetest.onrender.com/api/estate/${EstateId}`,
       { headers: { token: userToken } });
@@ -48,6 +50,8 @@ export default function MyEstate() {
       swal("Deleted Success!", "You clicked the button!", "success");
       queryClient.invalidateQueries("myEstate");
     }
+    
+    
   }
 
   if (isLoading) {
@@ -60,11 +64,10 @@ export default function MyEstate() {
 
   return (
     <div className='container my-5'>
-
       <div className="row">
         {data.estate.length ? data.estate.map((estates) =>
-          <div className="col-md-3" key={estates._id}>
-            <div className={`mt-3 ${style.card}`}>
+          <div className="col-md-4 mt-3" key={estates._id}>
+            <div className={`${style.card}`}>
               <Link to={`/ditalState/${estates._id}`}>
                 <img src={estates.imageUrl[0]} alt='Estate' />
               </Link>
@@ -83,13 +86,15 @@ export default function MyEstate() {
                   onClick={() => toggleButton(estates._id, estates.activated)}
                   className={`toggle-button ${estates.activated ? 'active' : ''}`}
                 >
-                  {estates.activated ? 'SOLD' : 'NOT SOLD'}
+                  {estates.activated ? 'NOT SOLD' : ' SOLD'}
                 </button>
               </div>
             </div>
           </div>
         ) : <h1>State null</h1>}
       </div>
+      
     </div>
+    
   )
 }

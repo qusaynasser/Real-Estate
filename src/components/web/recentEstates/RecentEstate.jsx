@@ -13,7 +13,7 @@ export default function RecentEstate() {
         return result;
     }
     const { data, isLoading } = useQuery("displayEstate", displayRecent);
-    console.log(data);
+    // console.log(data);
 
     if (isLoading) {
         return <h1>Loading...</h1>

@@ -1,24 +1,24 @@
 import { useFormik } from 'formik'
-import React, { useContext, useEffect, useState} from 'react'
-import { UpdateInfoSchema} from '../../../validation/Validation'
+import React, { useContext, useState} from 'react'
+import { InterstingSchema} from '../../../validation/Validation'
 import style from '../login/Login.module.css'
 import axios from 'axios'
 import { Bounce, toast } from 'react-toastify'
 
-import InputUpdate from '../../shared/InputUpdate'
+// import InputUpdate from '../../shared/InputUpdate'
 import { UserContext } from '../context/User'
+import Input from '../../shared/Input'
 
 
-export default function UpdateInfo() {
+export default function Interisting() {
     let {userToken,userData,userId,setUserData}=useContext(UserContext);
-    const [isAccountUpdated, setIsAccountUpdated] = useState(false);
-
+    const [locationFoucs,setLocationFoucs]=useState(false);
+    const [likeItEstate,setLikeItEstate] = useState(false);
 
     const initialValues=
     {
-        name:userData.name,
-        email:userData.email,
-        phone:userData.phone,
+        location:userData.location,
+        typeEstateLikeIt:userData.typeEstateLikeIt,
     }
     const onSubmit=async users=>{
         const {data}=await axios.put(`https://estatetest.onrender.com/api/users/${userId}`,users,
@@ -41,54 +41,43 @@ export default function UpdateInfo() {
             // تحديث بيانات المستخدم في السياق (context)
             setUserData(prevUserData => ({
                 ...prevUserData,
-                name: users.name,
-                email: users.email,
-                phone: users.phone,
+                location: users.location,
+                typeEstateLikeIt: users.typeEstateLikeIt
             }));
 
-            setIsAccountUpdated(true);
         }
     }
-    useEffect(()=>{
-        if(isAccountUpdated)
-        {
-            setIsAccountUpdated(false);
-        }
-    },[isAccountUpdated]);
-
+    
     const formik=useFormik({
         initialValues,
         onSubmit,
-        validationSchema:UpdateInfoSchema,
+        validationSchema:InterstingSchema,
     })
     const inputs=[
         {
-            id:'name',
-            name:'name',
-            title:'User Name',
+            id:'location',
+            name:'location',
+            title:'Location',
             type:'text',
-            value:formik.values.name
+            value:formik.values.location,
+            onFocus:()=>setLocationFoucs(true),
+            onBlur:()=>setLocationFoucs(false),
         },
         {
-        id:'email',
-        name:'email',
-        title:'Email address',
-        type:'email',
-        value:formik.values.email
-        },
-        {
-            id:'phone',
-            name:'phone',
-            title:'Phone Number',
+            id:'typeEstateLikeIt',
+            name:'typeEstateLikeIt',
+            title:'Type Estate Like It',
             type:'text',
-            value:formik.values.phone
+            value: formik.values.typeEstateLikeIt,
+            onFocus:()=>setLikeItEstate(true),
+            onBlur:()=>setLikeItEstate(false),
         },
 
     ]
 
     const renderInputs=inputs.map((input,index)=>{
         return (
-        <InputUpdate type={input.type} 
+        <Input type={input.type} 
         id={input.id}
         name={input.name}
         title={input.title}
@@ -97,7 +86,8 @@ export default function UpdateInfo() {
         onChange={formik.handleChange}
         errors={formik.errors}
         touched={formik.touched}
-        onBlur={formik.handleBlur}
+        onFocus={input.onFocus}
+        onBlur={formik.handleBlur && input.onBlur}
         key={index}/>
         )
     })
@@ -106,17 +96,38 @@ export default function UpdateInfo() {
 return (
     
     <div className='container'>
-        
+        <h1>Enter your interisting</h1>
         <div className="row">
             
             <div>
                 <form className="mt-3 " onSubmit={formik.handleSubmit}>
                 {renderInputs}
-                <button type="submit" className={`ms-3 ${style.btnLogin}`} disabled={!formik.isValid}>Update</button>
+                <button type="submit" className={` ${style.btnLogin}`} disabled={!formik.isValid}>Update</button>
                 </form>
             </div>
         </div>
 
+        {locationFoucs&&(
+            <div className="locatinName">
+                <ul>
+                    <li>Ramallah</li>
+                    <li>Tulkarm</li>
+                    <li>Nablus</li>
+                    <li>Jenin</li>
+                </ul>
+            </div>
+        )}
+        {likeItEstate&&(
+            <div className="likeIt">
+                <ul>
+                    <li>House</li>
+                    <li>Apartment</li>
+                    <li>Land</li>
+                    <li>Store</li>
+                    <li>Chalet</li>
+                </ul>
+            </div>
+        )}
     </div>
 )
 }

@@ -5,28 +5,30 @@ import { Link } from 'react-router-dom';
 import { DisplayContext } from '../context/Display';
 import { useQuery } from 'react-query';
 
-export default function DisplayLand() {
+export default function DisplayStore() {
 
-    let {displayLand}=useContext(DisplayContext);
+    const {displayStore}=useContext(DisplayContext);
 
-    const getDisplayLand=async()=>{
-        const result = await displayLand();
+    const getDisplayStore=async()=>{
+        const result= await displayStore();
         return result;
     }
-    const {data,isLoading}=useQuery("displayLand",getDisplayLand);
-    if (isLoading) {
+    const {data,isLoading}=useQuery("displayStore",getDisplayStore);
+    // console.log("Store"+data);
+    if(isLoading)
+    {
         return <h1>Loading...</h1>
     }
     return (
         <div className='container my-5'>
             <div className="d-flex justify-content-between">
-                <p className={`${style.titleState}`}>Land State</p>
-                <Link to={"/allLands"} className={`${style.btnSeeAll}`}>See All</Link>
+                <p className={`${style.titleState}`}>Store State</p>
+                <Link to={"/allStores"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">
                 {data.estates ? data.estates.map((estate) =>
 
-                    <div className="col-md-3" key={estate._id}>
+                    <div className="col-md-3 " key={estate._id}>
                         <div className={`${style.card}`}>
                             <Link to={`/ditalState/${estate._id}`} className='text-decoration-none'>
                                 <img src={estate.imageUrl[0]} alt='Estate' />
