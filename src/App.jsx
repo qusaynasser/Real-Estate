@@ -29,6 +29,8 @@ import DashbordLayout from './layout/DashbordLayout';
 import UpdateMyEstate from './components/web/profile/UpdateMyEstate';
 import FormUpdateEstate from './components/web/formUpdateEstate/FormUpdateEstate';
 import GridLoader from "react-spinners/ClipLoader";
+import Auth from '../protectedRoute/Auth';
+import ProtectedRoute from '../protectedRoute/ProtectedRoute';
 
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
@@ -92,7 +94,10 @@ export default function App() {
       },
       {
         path:'login',
-        element:<Login/>
+        element:
+        <Auth>
+        <Login/>
+        </Auth>
       },
       {
         path:"register",
@@ -148,7 +153,10 @@ export default function App() {
       },
       {
         path:"profile",
-        element:<Profile/>,
+        element:
+        <ProtectedRoute>
+        <Profile/>,
+        </ProtectedRoute>,
         children:[
           {
             index:true,
