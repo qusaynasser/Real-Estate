@@ -8,7 +8,7 @@ export function UserContextProvider({children})
     let [userData,setUserData]=useState(null);
     let [userId,setUserId]=useState(null);
     let [loading,setLoading]=useState(true);
-    
+    let [isAdmin,setIsAdmin]=useState(false);
     // console.log("USerToken==="+userToken);
     console.log(userData);
 
@@ -19,6 +19,7 @@ export function UserContextProvider({children})
             console.log(data);
             setUserData(data);
             setLoading(false);
+            setIsAdmin(data.isAdmin);
         }
     }
 
@@ -28,7 +29,7 @@ export function UserContextProvider({children})
             getUserData();
         }
     },[userToken]);
-    return <UserContext.Provider value={{userToken,setUserToken,userData,setUserData,loading,setLoading,setUserId,userId}}>
+    return <UserContext.Provider value={{userToken,setUserToken,userData,setUserData,loading,setLoading,setUserId,userId,isAdmin,setIsAdmin}}>
         {children}
     </UserContext.Provider>
 }

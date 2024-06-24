@@ -131,7 +131,7 @@ export default function SeeAllStore() {
 
                         <div className="col-md-3" key={estate._id}>
                             <div className={`mt-3 ${style.card}`}>
-                                <Link to={`/ditalState/${estate._id}`}>
+                                <Link to={`/ditalState/${estate._id}`} className=' text-decoration-none'>
                                     <img src={estate.imageUrl[0]} alt='Estate' />
                                     <p className={`${style.price}`}>{estate.price} $</p>
                                     <p className={`${style.type}`}>{estate.typeEstates}</p>

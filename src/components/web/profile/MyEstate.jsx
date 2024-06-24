@@ -8,8 +8,6 @@ import swal from 'sweetalert';
 
 export default function MyEstate() {
   let { userToken, userId } = useContext(UserContext);
-  const [showModal, setShowModal] = useState(false); // حالة عرض Modal
-
   const queryClient = useQueryClient();
 
   const toggleButton = async (estateId, currentStatus) => {
@@ -65,8 +63,8 @@ export default function MyEstate() {
   return (
     <div className='container my-5'>
       <div className="row">
-        {data.estate.length ? data.estate.map((estates) =>
-          <div className="col-md-4 mt-3" key={estates._id}>
+        {data.estate ? data.estate.map((estates) =>
+          <div className="col-md-4 mb-3" key={estates._id}>
             <div className={`${style.card}`}>
               <Link to={`/ditalState/${estates._id}`}>
                 <img src={estates.imageUrl[0]} alt='Estate' />

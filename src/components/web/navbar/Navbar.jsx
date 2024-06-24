@@ -41,19 +41,19 @@ export default function Navbar() {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-5">
         <li className="nav-item">
-          <Link className={`${style.navLink}`} aria-current="page" to={"/"}>Home</Link>
+          <Link className={` ${style.navLink}`} aria-current="page" to={"/"}>Home</Link>
         </li>
         <li className="nav-item">
-          <a className={`${style.navLink}`} href="#">Houses</a>
+          <a className={`${style.navLink}`} href="allHouse">Houses</a>
         </li>
         <li className="nav-item">
-          <a className={`${style.navLink}`} href="#">Store</a>
+          <a className={`${style.navLink}`} href="allStores">Store</a>
         </li>
         <li className="nav-item">
           <a className={`${style.navLink}`} href="#">About Us</a>
         </li>
         <li className="nav-item">
-          <a className={`${style.userName}`}  onClick={checkAddState}>Add State</a>
+          <a className={`${style.userName}`}  onClick={checkAddState}>Add Estate</a>
         </li>
         <li className="nav-item dropdown">
         {!userToken?

@@ -10,7 +10,6 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContextProvider } from './components/web/context/User.jsx'
 import { DisplayContextProvider } from './components/web/context/Display.jsx';
-import { LoadingContextProvider } from './components/web/context/Loading.jsx';
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -20,9 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <DisplayContextProvider>
     <UserContextProvider>
     <QueryClientProvider client={queryClient}>
-    <LoadingContextProvider>
     <App />
-    </LoadingContextProvider>
     </QueryClientProvider>
     </UserContextProvider>
     </DisplayContextProvider>

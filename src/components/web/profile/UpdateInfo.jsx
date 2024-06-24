@@ -67,6 +67,7 @@ export default function UpdateInfo() {
             name:'name',
             title:'User Name',
             type:'text',
+            className:'form-control w-50',
             value:formik.values.name
         },
         {
@@ -74,6 +75,7 @@ export default function UpdateInfo() {
         name:'email',
         title:'Email address',
         type:'email',
+        className:'form-control w-50',
         value:formik.values.email
         },
         {
@@ -81,6 +83,7 @@ export default function UpdateInfo() {
             name:'phone',
             title:'Phone Number',
             type:'text',
+            className:'form-control w-50',
             value:formik.values.phone
         },
 
@@ -112,7 +115,7 @@ return (
             <div>
                 <form className="mt-3 " onSubmit={formik.handleSubmit}>
                 {renderInputs}
-                <button type="submit" className={`ms-3 ${style.btnLogin}`} disabled={!formik.isValid}>Update</button>
+                <button type="submit" className={`ms-2 ${style.btnLogin}`} disabled={!formik.isValid}>Update</button>
                 </form>
             </div>
         </div>

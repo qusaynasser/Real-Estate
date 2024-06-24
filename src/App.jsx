@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect } from 'react'
+import React, {  useContext, useEffect, useState } from 'react'
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import WebLayout from './layout/WebLayout';
 import Login from './components/web/login/Login';
@@ -16,21 +16,30 @@ import SeeAllHouse from './components/web/house/SeeAllHouse';
 import SeeAllLand from './components/web/land/SellAllLand';
 import ContactUs from './components/web/contact/ContactUs';
 import ResultSearch from './components/web/searchResult/ResultSearch';
-import Dashbord from './components/dashbord/Dashbord';
-import Properties from './components/dashbord/properties/Properties';
 import SearchOnCity from './components/web/searchResult/SearchOnCity';
 import SeeAllApartment from './components/web/apartment/SeeAllApartment';
 import SeeAllStore from './components/web/store/SeeAllStore';
 import SeeAllChalet from './components/web/chalet/SeeAllChalet';
 import AddFeedback from './components/web/addFeedback/AddFeedback';
 import Intersting from './components/web/profile/Intersting';
-// import { LoadingContext, LoadingContextProvider } from './components/web/context/Loading';
-// import Loading from './components/web/loading/Loading';
+import Admin from './components/dashbord/admin/Admin';
+import UserList from './components/dashbord/admin/UserList';
+import AllEstate from './components/dashbord/admin/AllEstate';
+import DashbordLayout from './layout/DashbordLayout';
+import UpdateMyEstate from './components/web/profile/UpdateMyEstate';
+import FormUpdateEstate from './components/web/formUpdateEstate/FormUpdateEstate';
+import GridLoader from "react-spinners/ClipLoader";
 
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
-  // const { startLoading, endLoading, isLoading} = useContext(LoadingContext);
-  
+  const [loading,setLoading]=useState(false);
+  useEffect(()=>{
+    setLoading(true);
+    setTimeout(()=>{
+      setLoading(false);
+    },5000)
+  },[])
+
   useEffect(() => {
     const storedToken = localStorage.getItem("userToken");
     const storedUserId = localStorage.getItem("userId");
@@ -40,26 +49,33 @@ export default function App() {
       setUserToken(storedToken);
       setUserId(storedUserId);
     }
-
-    // Simulate resource loading
-    // setTimeout(() => {
-    //   endLoading();
-    // }, 3000);
   }, [setUserToken, setUserId]);
 
   
   const router = createBrowserRouter([
     {
-      path:"/dash",
-      element:<WebLayout/>,
+      path:"/admin",
+      element:<DashbordLayout/>,
       children:[
         {
-          path:"dashboard",
-          element:<Dashbord/>,
+          path:"/admin",
+          element:<Admin/>,
           children:[
             {
-              path:"properties",
-              element:<Properties/>
+              index:true,
+              element:<UserInfo/>
+            },
+            {
+              path:"updateInfo",
+              element:<UpdateInfo/>
+            },
+            {
+              path:"allEstate",
+              element:<AllEstate/>,
+            },
+            {
+              path:"allUser",
+              element:<UserList/>
             }
           ]
         },
@@ -156,15 +172,30 @@ export default function App() {
           {
             path:"interst",
             element:<Intersting/>
-          }
+          },
+          {
+            path:"updateEstate",
+            element:<UpdateMyEstate/>,
+          },
         ]
-      }
+      },
+      {
+        path:"/formUpdate/:EstateId",
+        element:<FormUpdateEstate/>
+      },
     ]
     },
   ]);
   return (
-    
-     <RouterProvider router={router} />
-    
+    <>
+    {loading?
+    <div className="spiners">
+      <GridLoader
+      color={"#36d7b7"} loading={loading} size={200}  aria-label="Loading Spinner" data-testid="loader"/>
+      </div>
+      : 
+      <RouterProvider router={router} />
+    }
+    </>
   )
 }

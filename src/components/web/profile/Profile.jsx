@@ -60,6 +60,8 @@ export default function Profile() {
 
         <Link to="myEstate">My Estate</Link>
 
+        <Link to="updateEstate">Update My Estate</Link>
+
         <Link to={"interst"}>Interisting</Link>
 
         <Link  onClick={() => setShowModal(true)}>Delete Account</Link> {/* فتح Modal عند الضغط */}

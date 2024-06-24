@@ -75,3 +75,10 @@ div.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swip
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.spiners
+{
+    text-align: center;
+    overflow: hidden;
+    margin-top: 240px;
+}

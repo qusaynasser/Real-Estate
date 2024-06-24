@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { DisplayContext } from '../context/Display';
 import { UserContext } from '../context/User';
 import { useQuery } from 'react-query';
-import style from '../recentEstates/Estate.module.css';
+import style from './Intersting.module.css';
 import { Link } from 'react-router-dom';
 
 export default function Location() {
@@ -40,7 +40,7 @@ export default function Location() {
             )}
             <div className="row">
                 {estatesData.length > 0 ? estatesData.map((state) => (
-                    <div className={`col-md-6 ${style.item}`} key={state._id}>
+                    <div className={`col-md-3 ${style.item}`} key={state._id}>
                         <div className="img">
                             <Link to={`/ditalState/${state._id}`}>
                                 <img src={state.imageUrl[0]} alt="Estate" />

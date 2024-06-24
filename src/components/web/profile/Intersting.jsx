@@ -4,8 +4,6 @@ import { InterstingSchema} from '../../../validation/Validation'
 import style from '../login/Login.module.css'
 import axios from 'axios'
 import { Bounce, toast } from 'react-toastify'
-
-// import InputUpdate from '../../shared/InputUpdate'
 import { UserContext } from '../context/User'
 import Input from '../../shared/Input'
 

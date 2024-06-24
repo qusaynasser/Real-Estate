@@ -22,7 +22,7 @@ useEffect(()=>{
     fetchSearchResults();
 },[])
   if (loading) {
-    return <div>Loading...</div>;
+    return <h1>Loading...</h1>;
   }
 return (
         <div className="container my-5">
