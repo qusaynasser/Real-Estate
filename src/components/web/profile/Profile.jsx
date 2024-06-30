@@ -4,21 +4,14 @@ import style from '../profile/Profile.module.css';
 import { UserContext } from '../context/User';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap'; // استيراد Modal و Button
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileInvoice,faPenToSquare,faBuilding,faHotel,faTrashArrowUp,faHeart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Profile() {
   const navigate = useNavigate();
-  let { loading, userToken } = useContext(UserContext);
+  let { loading, userToken,userId } = useContext(UserContext);
   const [isAccountDeleted, setIsAccountDeleted] = useState(false);
   const [showModal, setShowModal] = useState(false); // حالة عرض Modal
-  let [userId, setUserId] = useState(() => {
-    return localStorage.getItem('userId') || null;
-  });
-
-  useEffect(() => {
-    if(userId){
-      localStorage.setItem('userId', userId);
-    }
-  }, [userId]);
 
   const handleClose = () => setShowModal(false); // إغلاق Modal
 
@@ -54,17 +47,17 @@ export default function Profile() {
     <aside className={`mb-5 ${style.profile}`}>
       <div className={`${style.profileLinks}`}>
       <nav>
-        <Link to="">Info</Link>
+        <Link to=""><FontAwesomeIcon icon={faFileInvoice} /> Info</Link>
 
-        <Link to="updateInfo">Update My Data</Link>
+        <Link to="updateInfo"><FontAwesomeIcon icon={faPenToSquare} /> Update My Data</Link>
 
-        <Link to="myEstate">My Estate</Link>
+        <Link to="myEstate"><FontAwesomeIcon icon={faBuilding} /> My Estate</Link>
 
-        <Link to="updateEstate">Update My Estate</Link>
+        <Link to="updateEstate"><FontAwesomeIcon icon={faHotel} /> Update Estate</Link>
 
-        <Link to={"interst"}>Interisting</Link>
+        <Link to={"interst"}><FontAwesomeIcon icon={faHeart} /> Interisting</Link>
 
-        <Link  onClick={() => setShowModal(true)}>Delete Account</Link> {/* فتح Modal عند الضغط */}
+        <Link  onClick={() => setShowModal(true)}><FontAwesomeIcon icon={faTrashArrowUp} /> Delete Account</Link> {/* فتح Modal عند الضغط */}
 
       </nav>
 

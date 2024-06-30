@@ -57,7 +57,7 @@ export default function MyEstate() {
                 {estate.estates ? estate.estates.map((estates) =>
                     <div className="col-md-3" key={estates._id}>
                         <div className={`mt-3 ${style.card}`}>
-                            <Link to={`/ditalState/${estates._id}`}>
+                            <Link to={`/admin/ditalStateAdmin/${estates._id}`}>
                                 <img src={estates.imageUrl[0]} alt='Estate' />
                             </Link>
                             <p className={`${style.price}`}>{estates.price} $</p>

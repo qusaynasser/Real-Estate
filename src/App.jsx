@@ -31,6 +31,7 @@ import FormUpdateEstate from './components/web/formUpdateEstate/FormUpdateEstate
 import GridLoader from "react-spinners/ClipLoader";
 import Auth from '../protectedRoute/Auth';
 import ProtectedRoute from '../protectedRoute/ProtectedRoute';
+import DetalisEstateAdmin from './components/dashbord/admin/DetalisEstateAdmin';
 
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
@@ -39,7 +40,7 @@ export default function App() {
     setLoading(true);
     setTimeout(()=>{
       setLoading(false);
-    },5000)
+    },3000)
   },[])
 
   useEffect(() => {
@@ -76,9 +77,13 @@ export default function App() {
               element:<AllEstate/>,
             },
             {
+              path:"ditalStateAdmin/:EstateId",
+              element:<DetalisEstateAdmin/>
+            },
+            {
               path:"allUser",
               element:<UserList/>
-            }
+            },
           ]
         },
         

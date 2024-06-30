@@ -82,3 +82,9 @@ div.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swip
     overflow: hidden;
     margin-top: 240px;
 }
+
+.w95
+{
+    width: 95% !important;
+    padding-right: 80px !important;
+}
