@@ -138,8 +138,12 @@ const FormUpdateEstate = () => {
                     <select className="form-select w-75 border-4"  value={address} onChange={(e) => setAddress(e.target.value)}>
                         <option value="">Select Location</option>
                         <option value="Ramallah">Ramallah</option>
-                        <option value="Tulkarm">Tulkarm</option>
-                        <option value="Nablus">Nablus</option>
+                            <option value="Tulkarm">Tulkarm</option>
+                            <option value="Nablus">Nablus</option>
+                            <option value="Jenin">Jenin</option>
+                            <option value="Jerusalem">Jerusalem</option>
+                            <option value="Gaza">Gaza</option>
+                            <option value="Haifa">Haifa</option>
                     </select>
                     </div>
                 </div>
