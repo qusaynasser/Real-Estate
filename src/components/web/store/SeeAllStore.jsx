@@ -60,6 +60,10 @@ export default function SeeAllStore() {
                                     <option value="Ramallah">Ramallah</option>
                                     <option value="Tulkarm">Tulkarm</option>
                                     <option value="Nablus">Nablus</option>
+                                    <option value="Jenin">Jenin</option>
+                                    <option value="Jerusalem">Jerusalem</option>
+                                    <option value="Gaza">Gaza</option>
+                                    <option value="Haifa">Haifa</option>
                                 </select>
                             </div>
                         </div>
