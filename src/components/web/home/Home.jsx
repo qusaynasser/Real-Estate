@@ -39,6 +39,7 @@ export default function Home() {
         navigate(`/searchResults?typeState=${typeState}&cityName=${location}&SR=${rentrORseller}`);
     };
 
+    const [city,setCity]=useState('');
     const searchOnCity = (city) => {
         navigate(`/searchCity?cityName=${city}`);
     }

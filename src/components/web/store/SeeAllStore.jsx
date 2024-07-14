@@ -12,10 +12,9 @@ export default function SeeAllStore() {
         const  data  = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=Store");
         setDataState(data.data.estates);
         setLoading(false);
-        // return data.data.estates;
     }
+    
     console.log(dataState);
-    // const { data, isLoading } = useQuery("see-all", seeAllH);
     useEffect(()=>{
         seeAllS();
     },[])
@@ -71,7 +70,7 @@ export default function SeeAllStore() {
                         <div className="col-md-3">
                             <div className={`${style.types}`}>
                                 <select className="form-select" value={typeEatateS} onChange={(e)=>setTypeEatateS(e.target.value)}>
-                                    <option value="House">House</option>
+                                    <option value="Store">Store</option>
                                 </select>
                             </div>
                         </div>

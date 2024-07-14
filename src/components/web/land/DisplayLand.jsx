@@ -20,7 +20,7 @@ export default function DisplayLand() {
     return (
         <div className='container my-5'>
             <div className="d-flex justify-content-between">
-                <p className={`${style.titleState}`}>Land State</p>
+                <p className={`${style.titleState}`}>Lands</p>
                 <Link to={"/allLands"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">

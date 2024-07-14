@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/User'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse,faHouseCrack,faStore,faAddressCard,faPlus,faPenToSquare,
-         faUserTie,faIdCard,faRightFromBracket,faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+        faUserTie,faIdCard,faRightFromBracket,faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar() {
   // const {userId}=useParams();
@@ -48,10 +48,10 @@ export default function Navbar() {
           <Link className={` ${style.navLink}`} aria-current="page" to={"/"}><FontAwesomeIcon icon={faHouse} /> Home</Link>
         </li>
         <li className="nav-item">
-          <a className={`${style.navLink}`} href="allHouse"><FontAwesomeIcon icon={faHouseCrack} /> Houses</a>
+          <Link className={`${style.navLink}`} to={'allHouse'}><FontAwesomeIcon icon={faHouseCrack} /> Houses</Link>
         </li>
         <li className="nav-item">
-          <a className={`${style.navLink}`} href="allStores"><FontAwesomeIcon icon={faStore} /> Store</a>
+          <Link className={`${style.navLink}`} to={"allStores"}><FontAwesomeIcon icon={faStore} /> Store</Link>
         </li>
         <li className="nav-item">
           <a className={`${style.navLink}`} href="#"><FontAwesomeIcon icon={faAddressCard} /> About Us</a>

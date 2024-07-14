@@ -22,7 +22,7 @@ export default function DisplayStore() {
     return (
         <div className='container my-5'>
             <div className="d-flex justify-content-between">
-                <p className={`${style.titleState}`}>Store State</p>
+                <p className={`${style.titleState}`}>Stores</p>
                 <Link to={"/allStores"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">

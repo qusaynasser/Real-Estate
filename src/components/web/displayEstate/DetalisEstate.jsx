@@ -94,7 +94,7 @@ export default function DetalisEstate() {
             <div className="row">
                 <div className="col-md-3">
                 <p className={`${style.infoState}`}>Published Date</p>
-                <p className={`${style.infoState}`}>Advertise Estate type</p>
+                <p className={`${style.infoState}`}>Current Status</p>
                 <p className={`${style.infoState}`}>Estate type</p>
                 <p className={`${style.infoState}`}>Net M² </p>
                 <p className={`${style.infoState}`}>Price</p>
@@ -137,7 +137,7 @@ export default function DetalisEstate() {
                 <div className="col-md-2">
                     <p className={`${style.infoState}`}>Owner Name</p>
                     <p className={`${style.infoState}`}>Owner Number</p>
-                    <p className={`${style.infoState}`}>Property Condition</p>
+                    <p className={`${style.infoState}`}>Availability</p>
                 </div>
 
                 <div className="col-md-2">

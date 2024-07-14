@@ -22,7 +22,7 @@ export default function DisplayHouse() {
     return (
         <div className='container my-5'>
             <div className="d-flex justify-content-between">
-                <p className={`${style.titleState}`}>House State</p>
+                <p className={`${style.titleState}`}>Houses</p>
                 <Link to={"/allHouse"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">

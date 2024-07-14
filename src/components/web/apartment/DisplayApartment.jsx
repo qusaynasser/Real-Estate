@@ -22,7 +22,7 @@ export default function DisplayApartment() {
     return (
         <div className='container my-5'>
             <div className="d-flex justify-content-between">
-                <p className={`${style.titleState}`}>Apartment State</p>
+                <p className={`${style.titleState}`}>Apartments</p>
                 <Link to={"/allApartments"} className={`${style.btnSeeAll}`}>See All</Link>
             </div>
             <div className="row">
