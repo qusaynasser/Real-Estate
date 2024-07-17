@@ -22,16 +22,16 @@ import SeeAllStore from './components/web/store/SeeAllStore';
 import SeeAllChalet from './components/web/chalet/SeeAllChalet';
 import AddFeedback from './components/web/addFeedback/AddFeedback';
 import Intersting from './components/web/profile/Intersting';
-import Admin from './components/dashbord/admin/Admin';
-import UserList from './components/dashbord/admin/UserList';
-import AllEstate from './components/dashbord/admin/AllEstate';
-import DashbordLayout from './layout/DashbordLayout';
+// import Admin from './components/dashbord/admin/Admin';
+// import UserList from './components/dashbord/admin/UserList';
+// import AllEstate from './components/dashbord/admin/AllEstate';
+// import DashbordLayout from './layout/DashbordLayout';
 import UpdateMyEstate from './components/web/profile/UpdateMyEstate';
 import FormUpdateEstate from './components/web/formUpdateEstate/FormUpdateEstate';
 import GridLoader from "react-spinners/ClipLoader";
 import Auth from '../protectedRoute/Auth';
 import ProtectedRoute from '../protectedRoute/ProtectedRoute';
-import DetalisEstateAdmin from './components/dashbord/admin/DetalisEstateAdmin';
+// import DetalisEstateAdmin from './components/dashbord/admin/DetalisEstateAdmin';
 
 export default function App() {
   let {setUserToken,setUserId}=useContext(UserContext);
@@ -56,39 +56,39 @@ export default function App() {
 
   
   const router = createBrowserRouter([
-    {
-      path:"/admin",
-      element:<DashbordLayout/>,
-      children:[
-        {
-          path:"/admin",
-          element:<Admin/>,
-          children:[
-            {
-              index:true,
-              element:<UserInfo/>
-            },
-            {
-              path:"updateInfo",
-              element:<UpdateInfo/>
-            },
-            {
-              path:"allEstate",
-              element:<AllEstate/>,
-            },
-            {
-              path:"ditalStateAdmin/:EstateId",
-              element:<DetalisEstateAdmin/>
-            },
-            {
-              path:"allUser",
-              element:<UserList/>
-            },
-          ]
-        },
+    // {
+    //   path:"/admin",
+    //   element:<DashbordLayout/>,
+    //   children:[
+    //     {
+    //       path:"/admin",
+    //       element:<Admin/>,
+    //       children:[
+    //         {
+    //           index:true,
+    //           element:<UserInfo/>
+    //         },
+    //         {
+    //           path:"updateInfo",
+    //           element:<UpdateInfo/>
+    //         },
+    //         {
+    //           path:"allEstate",
+    //           element:<AllEstate/>,
+    //         },
+    //         {
+    //           path:"ditalStateAdmin/:EstateId",
+    //           element:<DetalisEstateAdmin/>
+    //         },
+    //         {
+    //           path:"allUser",
+    //           element:<UserList/>
+    //         },
+    //       ]
+    //     },
         
-      ]
-    },
+    //   ]
+    // },
     {
       path: "/",
       element: <WebLayout/>,
