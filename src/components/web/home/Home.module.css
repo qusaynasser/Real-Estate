@@ -249,3 +249,98 @@ letter-spacing: 0.2em;
 text-align: center;
 text-transform: uppercase;
 }
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .bacImg
+    {
+    width: 100%;
+    /* position: relative; */
+    /* bottom: -150px; */
+    }
+    .p1 
+{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: #110229;
+    width: 250px;
+}
+.p2
+{
+    position: absolute;
+    top: 120px;
+    left: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #585981;
+    width: 300px;
+    line-height: 36px;
+}
+.rectangle
+{
+    width: 0px;
+}
+
+.location p,.property p, .price p
+{
+    display: none;
+}
+.location select
+{
+position: absolute;
+top: -180px;
+left: -70px;
+color: #8F90A6;
+font-family: "Inter", sans-serif;
+font-size: 15px;
+font-weight: 400;
+width: 250px;
+}
+.property select
+{
+    position: absolute;
+    top: -120px;
+    left: -70px;
+    color: #8F90A6;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    width: 250px;
+}
+.price select
+{
+    position: absolute;
+    top: -60px;
+    left: -70px;
+    color: #8F90A6;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    width: 250px;
+}
+/* end search home  */
+
+.parg p
+{
+font-size: 30px;
+}
+
+.imgHome img
+{
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    opacity: 70%;
+    height: 400px;
+    margin-bottom: 30px;
+    width: 80% !important;
+}
+}

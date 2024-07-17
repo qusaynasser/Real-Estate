@@ -41,7 +41,7 @@ transition: ease-in .4s ;
 
 .navLink:hover::after
 {
-    width: 96%;
+    width: 96% ;
 }
 .userName
 {
@@ -65,4 +65,18 @@ transition: ease-in .4s ;
     font-size: 16px;
     color: #000 !important;
     font-weight: bold !important;
+}
+
+@media (max-width: 768px) {
+    .logoTitle
+    {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0.2em;
+    margin-top: 15px;
+    position: relative;
+    right: 240px;
+    }
 }

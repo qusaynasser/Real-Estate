@@ -239,3 +239,42 @@ margin: 10px 15px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
 }
+
+@media (max-width: 768px) {
+.card
+{
+width: 285px;
+height: 335px;
+margin-bottom: 30px !important;
+margin: auto;
+}
+.types select,.rentORsells select,.locations select
+{
+    position: relative;
+    right: 0px;
+    background-color: #d2d8dd;
+    color: #000;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    border:2px solid #000 ;
+    margin-bottom: 15px;
+}
+.areas input
+{
+    position: relative;
+    right: 45px;
+    margin-bottom: 15px;
+    border: 2px solid #000;
+}
+.prices input
+{
+    border: 2px solid #000;
+    margin-bottom: 15px;
+}
+.btnSearch button
+{
+    position: relative;
+    right: -35px;
+    width: 300px;
+}
+}

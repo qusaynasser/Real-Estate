@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import DisplayApartment from '../apartment/DisplayApartment';
 import DisplayStore from '../store/DisplayStore';
 import DisplayChalet from '../chalet/DisplayChalet';
-import Feedback from '../feedback/Feedback';
+// import Feedback from '../feedback/Feedback';
 import Location from '../location&likeIt/Location';
 import { UserContext } from '../context/User';
 
@@ -39,7 +39,6 @@ export default function Home() {
         navigate(`/searchResults?typeState=${typeState}&cityName=${location}&SR=${rentrORseller}`);
     };
 
-    const [city,setCity]=useState('');
     const searchOnCity = (city) => {
         navigate(`/searchCity?cityName=${city}`);
     }
@@ -147,7 +146,7 @@ export default function Home() {
             <DisplayApartment />
             <DisplayStore />
             <DisplayChalet />
-            <Feedback />
+            {/* <Feedback /> */}
             <ContactUs />
         </>
     )

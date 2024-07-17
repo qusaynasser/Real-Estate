@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../web/context/User';
-import style from '../../../../src/components/dashbord/admin/admin.module.css';
+import style from './admin.module.css';
 import { Link,Outlet,useNavigate } from 'react-router-dom';
 
 const Admin = () => {
