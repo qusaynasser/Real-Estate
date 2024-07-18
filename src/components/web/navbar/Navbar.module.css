@@ -70,13 +70,7 @@ transition: ease-in .4s ;
 @media (max-width: 768px) {
     .logoTitle
     {
-    font-family: "Inter", sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 36px;
-    letter-spacing: 0.2em;
-    margin-top: 15px;
-    position: relative;
-    right: 240px;
+    position: absolute;
+    right: 220px;
     }
 }

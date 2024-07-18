@@ -2,7 +2,7 @@
 
 .bacImg
 {
-    background-image: url('../../../../img/Banner\ Image.png');
+    background-image: url('/public/img/Banner\ Image.png');
     /* size: cover; */
     height: 633.76px;
     width: 1300px;
@@ -252,14 +252,12 @@ text-transform: uppercase;
 
 
 /* Media Queries */
-@media (max-width: 768px) {
-    .bacImg
-    {
-    width: 100%;
-    /* position: relative; */
-    /* bottom: -150px; */
-    }
-    .p1 
+@media only screen and (max-width: 600px) {
+.bacImg
+{
+width: 100%;
+}
+.p1 
 {
     position: absolute;
     top: 30px;
@@ -333,13 +331,6 @@ font-size: 30px;
 
 .imgHome img
 {
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    opacity: 70%;
-    height: 400px;
     margin-bottom: 30px;
     width: 80% !important;
 }
