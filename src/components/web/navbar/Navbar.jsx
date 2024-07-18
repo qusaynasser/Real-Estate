@@ -39,7 +39,7 @@ export default function Navbar() {
   
     <nav className="navbar container navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-  <img src='/public/img/logoLogin.png' alt='logo' className={`${style.logo}`}/>
+  <img src='../../../../img/logoLogin.png' alt='logo' className={`${style.logo}`}/>
     <p className={`${style.logoTitle}`}>AQ Estate</p>
     
     <div className="collapse navbar-collapse" id="navbarSupportedContent">

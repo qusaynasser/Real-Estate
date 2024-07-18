@@ -2,7 +2,7 @@
 
 .bacImg
 {
-    background-image: url('/public/img/Banner\ Image.png');
+    background-image: url('../../../../img/BannerImage.png');
     /* size: cover; */
     height: 633.76px;
     width: 1300px;
