@@ -1,50 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-.logo
-{
+/* General Styles */
+.logo {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
-.logoTitle
-{
-font-family: "Inter", sans-serif;
-font-size: 16px;
-font-weight: 700;
-line-height: 36px;
-letter-spacing: 0.2em;
-margin-top: 15px;
-}
-.navLink
-{ position: relative;
-font-family: "Inter", sans-serif;
-font-size: 15px; 
-font-weight: 700; 
-line-height: 36px; 
-letter-spacing: 0.2em;
-color: #110229; 
-text-transform: uppercase;
-text-decoration: none;
+
+.logoTitle {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0.2em;
+    margin-top: 15px;
 }
 
-.navLink::after
-{ 
-position: absolute; 
-content: ''; 
-top: 18px; 
-left: 0px;
-width: 0%;
-height: 15%; 
-background-color: #000; 
-transition: ease-in .4s ;
+.navLink {
+    position: relative;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0.2em;
+    color: #110229;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
-.navLink:hover::after
-{
-    width: 96% ;
+.navLink::after {
+    position: absolute;
+    content: '';
+    top: 18px;
+    left: 0px;
+    width: 0%;
+    height: 15%;
+    background-color: #000;
+    transition: ease-in 0.4s;
 }
-.userName
-{
+
+.navLink:hover::after {
+    width: 96%;
+}
+
+.userName {
     border: 2px solid #000;
     padding: 5px 10px;
     border-radius: 8px;
@@ -59,18 +58,64 @@ transition: ease-in .4s ;
     text-decoration: none;
     cursor: pointer;
 }
-.login
-{
+
+.login {
     font-family: "Inter", sans-serif;
     font-size: 16px;
     color: #000 !important;
     font-weight: bold !important;
 }
 
-@media (max-width: 768px) {
-    .logoTitle
-    {
-    position: absolute;
-    right: 220px;
+/* Navbar Styles */
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.navbar-collapse.show {
+    display: flex;
+}
+
+/* Responsive Styles */
+/* @media (max-width: 991px) {
+    .navbar-collapse {
+        display: none;
+    }
+
+    .navbar-collapse.show {
+        display: flex;
+    }
+
+    .navbar-toggler {
+        display: block;
     }
 }
+
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+    }
+} */

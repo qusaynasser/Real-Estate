@@ -1,40 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react'
-import style from '../home/Home.module.css'
+import React, { Suspense, useContext, useEffect, useState } from 'react';
+import style from '../home/Home.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import RecentEstate from '../recentEstates/RecentEstate';
-import DisplayHouse from '../house/DisplayHouse';
-import DisplayLand from '../land/DisplayLand';
-import ContactUs from '../contact/ContactUs';
 import { useNavigate } from 'react-router-dom';
-import DisplayApartment from '../apartment/DisplayApartment';
-import DisplayStore from '../store/DisplayStore';
-import DisplayChalet from '../chalet/DisplayChalet';
-// import Feedback from '../feedback/Feedback';
-import Location from '../location&likeIt/Location';
 import { UserContext } from '../context/User';
+
+// Load components lazily
+const RecentEstate = React.lazy(() => import('../recentEstates/RecentEstate'));
+const DisplayHouse = React.lazy(() => import('../house/DisplayHouse'));
+const DisplayLand = React.lazy(() => import('../land/DisplayLand'));
+const DisplayApartment = React.lazy(() => import('../apartment/DisplayApartment'));
+const DisplayStore = React.lazy(() => import('../store/DisplayStore'));
+const DisplayChalet = React.lazy(() => import('../chalet/DisplayChalet'));
+const ContactUs = React.lazy(() => import('../contact/ContactUs'));
+const Location = React.lazy(() => import('../location&likeIt/Location'));
 
 export default function Home() {
     let { isAdmin } = useContext(UserContext);
-
-    const navigat = useNavigate();
+    const navigate = useNavigate();
+    
     useEffect(() => {
         if (isAdmin) {
             try {
                 console.log('user is admin :', isAdmin);
-                navigat('/admin');
-
+                navigate('/admin');
             } catch (error) {
                 console.error('Error decoding the token:', error);
             }
         }
     }, [isAdmin]);
 
-
     const [location, setLocation] = useState('');
     const [typeState, setTypeState] = useState('');
     const [rentrORseller, setRentrORseller] = useState('');
-    const navigate = useNavigate();
     const handleSearch = () => {
         navigate(`/searchResults?typeState=${typeState}&cityName=${location}&SR=${rentrORseller}`);
     };
@@ -60,7 +58,6 @@ export default function Home() {
                             <div className="col-md-4">
                                 <div className={`${style.location}`}>
                                     <p>Location</p>
-
                                     <select className="form-select" aria-label="Default select example" value={location} onChange={(e) => setLocation(e.target.value)}>
                                         <option value="">Select Your City</option>
                                         <option value="Ramallah">Ramallah</option>
@@ -71,14 +68,12 @@ export default function Home() {
                                         <option value="Gaza">Gaza</option>
                                         <option value="Haifa">Haifa</option>
                                     </select>
-
                                 </div>
                             </div>
 
                             <div className="col-md-3">
                                 <div className={`${style.property}`}>
                                     <p>Property Type</p>
-
                                     <select className="form-select" aria-label="Default select example" value={typeState} onChange={(e) => setTypeState(e.target.value)}>
                                         <option value="">Choose Property Type</option>
                                         <option value="House">House</option>
@@ -93,7 +88,6 @@ export default function Home() {
                             <div className="col-md-3">
                                 <div className={`${style.price}`}>
                                     <p>Renter/Seller</p>
-
                                     <select className="form-select" aria-label="Default select example" value={rentrORseller} onChange={(e) => setRentrORseller(e.target.value)}>
                                         <option value="">Choose rentrORseller</option>
                                         <option value="Rent">Rent</option>
@@ -139,15 +133,16 @@ export default function Home() {
                 </div>
             </div>
 
-            <Location />
-            <RecentEstate />
-            <DisplayHouse />
-            <DisplayLand />
-            <DisplayApartment />
-            <DisplayStore />
-            <DisplayChalet />
-            {/* <Feedback /> */}
-            <ContactUs />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Location />
+                <RecentEstate />
+                <DisplayHouse />
+                <DisplayLand />
+                <DisplayApartment />
+                <DisplayStore />
+                <DisplayChalet />
+                <ContactUs />
+            </Suspense>
         </>
     )
 }

@@ -1,7 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-
 .logimg
 {
     width: 700px;
@@ -92,3 +91,9 @@ margin-bottom: 10px;
     font-weight: 700;
 }
 
+@media only screen and (max-width: 991px) {
+    .logimg
+    {
+        display: none;
+    }
+}

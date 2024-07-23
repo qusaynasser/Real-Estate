@@ -59,3 +59,32 @@
         flex: 1 ; /* Make the .data container take up the remaining space */
         margin-left: 10px;
 }
+
+@media only screen and (max-width: 991px) {
+    .profile
+{
+    background-image: none;
+}
+
+.profileLinks nav
+{
+    background-color: rgb(194, 190, 190);
+    width: fit-content;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px;
+}
+.profileLinks nav a
+{
+    margin-bottom: 1px;
+    text-decoration: none;
+    height: 50px;
+    width: 80%;
+    font-size: 13px;
+    font-family:'Courier New', Courier, monospace;
+    color: rgb(50, 45, 45);
+    font-weight: 700;
+}
+}

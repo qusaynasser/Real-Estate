@@ -122,7 +122,7 @@ return (
 
                 <form className="mt-3 " onSubmit={formik.handleSubmit}>
                 {renderInputs}
-                <button type="submit" className={`${style.btnLogin}`} disabled={!formik.isValid}>Register</button>
+                <button type="submit" className={`${style.btnLogin} mb-5`} disabled={!formik.isValid}>Register</button>
                 </form>
 
                 {passwordFocused && (
