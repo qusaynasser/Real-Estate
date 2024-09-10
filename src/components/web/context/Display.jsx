@@ -5,15 +5,23 @@ export const DisplayContext=createContext(null);
 export function DisplayContextProvider({children})
 {
     const displayRecentEstate = async () => {
-        const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?pageNumber=1 ");
-        // console.log(data);
-        return data;
+        try {
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?pageNumber=1 ");
+            // console.log(data);
+            return data;
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const displayHouse = async () => {
-        const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House&pageNumber=1");
-        // console.log(data);
-        return data;
+        try {
+            const { data } = await axios.get("https://estatetest.onrender.com/api/estate/all?typeEatateS=House&pageNumber=1");
+            // console.log(data);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const displayLand = async () => {

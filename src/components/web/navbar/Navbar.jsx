@@ -10,6 +10,7 @@ export default function Navbar() {
   // const {userId}=useParams();
   const navigate=useNavigate();
   let {userToken,setUserToken,userData,setUserData,loading}=useContext(UserContext);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   
   const logout=()=>{
     localStorage.removeItem('userToken');
@@ -17,13 +18,7 @@ export default function Navbar() {
     setUserData(null);
     navigate("/");
   }
-  if(loading&&userToken){
-    return <div className="d-flex justify-content-center">
-    <div className="spinner-border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  </div>  
-  }
+
 
   const checkAddState=()=>{
     if(userToken)
@@ -35,12 +30,18 @@ export default function Navbar() {
         navigate("/login");
       }
   }
-
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   
   const handleToggle = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
+
+  if(loading&&userToken){
+    return <div className="d-flex justify-content-center">
+    <div className="spinner-border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>  
+  }
   return (
   
     <nav className="navbar container navbar-expand-lg bg-body-tertiary">
